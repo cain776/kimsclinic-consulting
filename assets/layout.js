@@ -64,7 +64,7 @@
     {
       label: '발표 자료',
       items: [
-        { id: 'slides', icon: ICONS.slides, title: '발표용 장표', href: 'pages/slides.html' },
+        { id: 'slides', icon: ICONS.slides, title: '슬라이드 (발표용)', href: 'pages/slides.html' },
       ],
     },
   ];

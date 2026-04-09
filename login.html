@@ -20,6 +20,13 @@
   .login-btn:hover { background: #2563eb; }
   .login-err { margin-top: 12px; font-size: 12px; color: #ef4444; text-align: center; min-height: 16px; }
   .login-foot { margin-top: 20px; text-align: center; font-size: 11px; color: #6b7280; }
+
+  .login-theme { position: fixed; top: 20px; right: 24px; display: flex; background: #161b22; border: 1px solid #2a3142; border-radius: 999px; padding: 4px; gap: 2px; }
+  body[data-theme="light"] .login-theme { background: #fff; border-color: #e5e7eb; box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+  .login-theme button { background: transparent; border: 0; color: #8b92a0; font-family: inherit; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+  body[data-theme="light"] .login-theme button { color: #6b7280; }
+  .login-theme button.active { background: #1c2838; color: #4a9eff; }
+  body[data-theme="light"] .login-theme button.active { background: #eff6ff; color: #2563eb; }
 </style>
 </head>
 <body>
@@ -29,6 +36,11 @@
   // Already authed? redirect
   if (sessionStorage.getItem('tr-auth') === '1') location.replace('index.html');
 </script>
+
+<div class="login-theme">
+  <button data-theme-btn="dark">🌙 Dark</button>
+  <button data-theme-btn="light">☀ Light</button>
+</div>
 
 <div class="login-wrap">
   <div class="login-brand">청주김안과<br>Technical Report</div>
@@ -45,6 +57,16 @@
 </div>
 
 <script>
+  // Theme toggle
+  const toggle = document.querySelector('.login-theme');
+  function applyTheme(t) {
+    document.body.setAttribute('data-theme', t);
+    localStorage.setItem('theme', t);
+    toggle.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.themeBtn === t));
+  }
+  toggle.querySelectorAll('button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.themeBtn)));
+  applyTheme(localStorage.getItem('theme') || 'dark');
+
   const PASSWORD = 'visuworks2026';
   const form = document.getElementById('loginForm');
   const err = document.getElementById('err');
