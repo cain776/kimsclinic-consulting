@@ -44,7 +44,7 @@ body[data-theme="light"] .toc-item a.active { color: #2563eb; }
 
 html { scroll-behavior: smooth; scroll-padding-top: 60px; }
 .section-badge { display: inline-block; background: #1e3a5f; color: #4a9eff; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 4px; letter-spacing: 1px; margin-bottom: 16px; }
-h1 { font-size: 38px; font-weight: 800; background: linear-gradient(90deg, #fff, #4a9eff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+h1 { font-size: 38px; font-weight: 800; background: linear-gradient(90deg, #dbeafe 0%, #60a5fa 50%, #4a9eff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; letter-spacing: -0.5px; }
 .subtitle { color: #8b92a0; font-size: 15px; margin-bottom: 36px; }
 h2 { font-size: 22px; margin: 36px 0 18px; padding-bottom: 10px; border-bottom: 1px solid #222; }
 h3 { font-size: 17px; margin: 20px 0 10px; }
@@ -191,7 +191,7 @@ body[data-theme="light"] .lnb-item:hover { background: #f3f4f6; color: #111827; 
 body[data-theme="light"] .lnb-item.active { background: #eff6ff; color: #2563eb; border-left-color: #2563eb; }
 
 body[data-theme="light"] .section-badge { background: #dbeafe; color: #2563eb; }
-body[data-theme="light"] h1 { background: linear-gradient(90deg, #111827, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+body[data-theme="light"] h1 { background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 body[data-theme="light"] .subtitle { color: #6b7280; }
 body[data-theme="light"] h2 { border-bottom: 1px solid #e5e7eb; color: #111827; }
 body[data-theme="light"] h3 { color: #111827; }
