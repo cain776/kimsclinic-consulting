@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>로그인 — 청주김안과 Technical Report</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  body { display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+  .login-wrap { width: 100%; max-width: 380px; padding: 40px; }
+  .login-brand { text-align: center; font-size: 22px; font-weight: 800; color: #4a9eff; margin-bottom: 6px; line-height: 1.35; }
+  body[data-theme="light"] .login-brand { color: #2563eb; }
+  .login-sub { text-align: center; font-size: 13px; color: #8b92a0; margin-bottom: 32px; }
+  .login-box { background: #161b22; border: 1px solid #222; border-radius: 12px; padding: 32px 28px; }
+  body[data-theme="light"] .login-box { background: #fff; border-color: #e5e7eb; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+  .login-label { display: block; font-size: 12px; color: #8b92a0; font-weight: 600; margin-bottom: 8px; letter-spacing: .5px; text-transform: uppercase; }
+  .login-input { width: 100%; padding: 12px 14px; background: #0f1419; border: 1px solid #2a3142; border-radius: 8px; color: #e4e6eb; font-family: inherit; font-size: 15px; outline: none; transition: border-color .15s; }
+  body[data-theme="light"] .login-input { background: #f9fafb; border-color: #e5e7eb; color: #111827; }
+  .login-input:focus { border-color: #4a9eff; }
+  .login-btn { width: 100%; margin-top: 16px; padding: 13px; background: #4a9eff; border: 0; border-radius: 8px; color: #fff; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: background .15s; }
+  .login-btn:hover { background: #2563eb; }
+  .login-err { margin-top: 12px; font-size: 12px; color: #ef4444; text-align: center; min-height: 16px; }
+  .login-foot { margin-top: 20px; text-align: center; font-size: 11px; color: #6b7280; }
+</style>
+</head>
+<body>
+<script>
+  // Apply saved theme (no layout.js on login page)
+  document.body.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+  // Already authed? redirect
+  if (sessionStorage.getItem('tr-auth') === '1') location.replace('index.html');
+</script>
+
+<div class="login-wrap">
+  <div class="login-brand">청주김안과<br>Technical Report</div>
+  <div class="login-sub">열람을 위해 비밀번호를 입력해 주세요.</div>
+
+  <form class="login-box" id="loginForm" autocomplete="off">
+    <label class="login-label" for="pw">Password</label>
+    <input class="login-input" id="pw" type="password" placeholder="••••••••" autofocus required>
+    <button class="login-btn" type="submit">들어가기</button>
+    <div class="login-err" id="err"></div>
+  </form>
+
+  <div class="login-foot">© 2026 Visuworks · Confidential</div>
+</div>
+
+<script>
+  const PASSWORD = 'visuworks2026';
+  const form = document.getElementById('loginForm');
+  const err = document.getElementById('err');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const pw = document.getElementById('pw').value;
+    if (pw === PASSWORD) {
+      sessionStorage.setItem('tr-auth', '1');
+      location.replace('index.html');
+    } else {
+      err.textContent = '비밀번호가 올바르지 않습니다.';
+      document.getElementById('pw').select();
+    }
+  });
+</script>
+</body>
+</html>

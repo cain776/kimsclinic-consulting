@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>현재 문제 분석 — 청주김안과</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .problem { background: #161b22; border: 1px solid #222; border-radius: 10px; padding: 26px; margin-bottom: 18px; border-left: 4px solid #ef4444; }
+  body[data-theme="light"] .problem { background: #fff; border: 1px solid #e5e7eb; border-left: 4px solid #ef4444; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+  .problem.high { border-left-color: #f59e0b; }
+  .problem.medium { border-left-color: #eab308; }
+
+  .problem-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+  .problem-num { font-size: 12px; color: #8b92a0; font-weight: 700; letter-spacing: .5px; }
+  .problem-title { font-size: 19px; font-weight: 800; color: #fff; }
+  body[data-theme="light"] .problem-title { color: #111827; }
+
+  .sev { display: inline-block; font-size: 10.5px; font-weight: 800; padding: 4px 10px; border-radius: 4px; letter-spacing: .5px; text-transform: uppercase; }
+  .sev.critical { background: #7f1d1d; color: #fecaca; }
+  .sev.high { background: #78350f; color: #fed7aa; }
+  .sev.medium { background: #713f12; color: #fde68a; }
+  body[data-theme="light"] .sev.critical { background: #fee2e2; color: #b91c1c; }
+  body[data-theme="light"] .sev.high { background: #ffedd5; color: #c2410c; }
+  body[data-theme="light"] .sev.medium { background: #fef3c7; color: #a16207; }
+
+  .problem-impact { color: #8b92a0; font-size: 13px; margin-bottom: 16px; }
+  body[data-theme="light"] .problem-impact { color: #6b7280; }
+
+  .problem h3 { font-size: 14px; color: #e4e6eb; margin: 18px 0 8px; }
+  body[data-theme="light"] .problem h3 { color: #111827; }
+  .problem p { font-size: 13.5px; color: #dfe2e8; line-height: 1.7; margin-bottom: 6px; }
+  body[data-theme="light"] .problem p { color: #1f2937; }
+  .problem ul { list-style: none; margin: 6px 0; }
+  .problem ul li { position: relative; padding: 4px 0 4px 16px; font-size: 13.5px; color: #dfe2e8; line-height: 1.6; }
+  body[data-theme="light"] .problem ul li { color: #1f2937; }
+  .problem ul li::before { content: "›"; position: absolute; left: 0; color: #ef4444; font-weight: 700; }
+  .problem.high ul li::before { color: #f59e0b; }
+  .problem.medium ul li::before { color: #eab308; }
+
+  .code-inline { background: #0f1419; color: #4a9eff; padding: 1px 6px; border-radius: 3px; font-family: 'Consolas', monospace; font-size: 12px; }
+  body[data-theme="light"] .code-inline { background: #eff6ff; color: #2563eb; }
+
+  .impact-tbl { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+  .impact-tbl th, .impact-tbl td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #222; }
+  body[data-theme="light"] .impact-tbl th, body[data-theme="light"] .impact-tbl td { border-bottom: 1px solid #e5e7eb; }
+  .impact-tbl thead th { background: #0f1419; color: #8b92a0; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+  body[data-theme="light"] .impact-tbl thead th { background: #f9fafb; color: #6b7280; }
+  .impact-tbl td:first-child { width: 160px; font-weight: 600; color: #e4e6eb; }
+  body[data-theme="light"] .impact-tbl td:first-child { color: #111827; }
+
+  .tally { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px; }
+  .tally-card { background: #161b22; border: 1px solid #222; border-radius: 10px; padding: 20px; border-top: 3px solid #ef4444; }
+  .tally-card.high { border-top-color: #f59e0b; }
+  .tally-card.medium { border-top-color: #eab308; }
+  .tally-card.low { border-top-color: #6b7280; }
+  body[data-theme="light"] .tally-card { background: #fff; border: 1px solid #e5e7eb; border-top: 3px solid #ef4444; }
+  body[data-theme="light"] .tally-card.high { border-top-color: #f59e0b; }
+  body[data-theme="light"] .tally-card.medium { border-top-color: #eab308; }
+  body[data-theme="light"] .tally-card.low { border-top-color: #9ca3af; }
+  .tally-label { font-size: 11px; color: #8b92a0; letter-spacing: 1px; text-transform: uppercase; }
+  .tally-count { font-size: 32px; font-weight: 800; margin: 4px 0; }
+  .tally-count.c-crit { color: #ef4444; }
+  .tally-count.c-high { color: #f59e0b; }
+  .tally-count.c-mid { color: #eab308; }
+  .tally-count.c-low { color: #9ca3af; }
+  .tally-desc { font-size: 12px; color: #8b92a0; line-height: 1.5; }
+  @media (max-width: 1100px) { .tally { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<script>window.CURRENT_PAGE = 'analysis';</script>
+<script src="../assets/layout.js" data-base="../"></script>
+
+<main class="main">
+  <div class="section-badge">ANALYSIS — LEGACY SYSTEM</div>
+  <h1>현재 문제 분석</h1>
+  <div class="subtitle">청주김안과 현행 전산환경 (성민CRM C# WinForms + MD소프트 + 종이차트 + MSSQL) 의 구조적·운영적 문제점 진단</div>
+
+  <div class="dual">
+    <div class="dual-box left">
+      <div class="dual-head">👤 환자가 바뀌었습니다</div>
+      <div class="dual-sub">Patient Changes</div>
+      <ul>
+        <li>정보는 넘치지만, 복잡한 설명을 오래 듣지 않습니다</li>
+        <li>빠르고 분명한 판단을 원합니다</li>
+        <li>납득될 때 선택합니다</li>
+      </ul>
+    </div>
+    <div class="dual-box right">
+      <div class="dual-head">🏥 병원은 아직 준비되지 않았습니다</div>
+      <div class="dual-sub">Hospital Status</div>
+      <ul>
+        <li>경험과 직관 중심으로 운영되는 구간이 많습니다</li>
+        <li>마케팅 · 콜센터 · CRM/EMR 데이터가 끊겨 있습니다</li>
+        <li>무엇이 매출로 이어지는지 설명하기 어렵습니다</li>
+      </ul>
+    </div>
+  </div>
+  <div class="closing">이 간극을 메우는 것이 비쥬웍스가 하는 일입니다 — 아래는 그 근거가 되는 진단입니다</div>
+
+  <!-- ============ 문제 1 ============ -->
+  <div class="problem">
+    <div class="problem-head">
+      <span class="problem-num">[문제 1]</span>
+      <span class="problem-title">Windows 전용 Fat Client 구조</span>
+      <span class="sev critical">Critical</span>
+    </div>
+    <div class="problem-impact">업무 이동성 전무 · 배포 비용 누적 · 장애 파급력 큼</div>
+
+    <h3>플랫폼 한계</h3>
+    <ul>
+      <li>C# WinForms 기반 — <b>설치된 Windows PC에서만 동작</b>. Mac · 태블릿 · 모바일 불가</li>
+      <li>재택/원격 근무 불가, 원내 단말 외 업무 접근 경로 전무</li>
+      <li>비즈니스 로직이 클라이언트에 분산되어 버전 불일치 발생</li>
+    </ul>
+
+    <h3>배포 및 운영</h3>
+    <ul>
+      <li>기능 추가·버그 수정 시 <b>모든 단말에 수동 재설치</b></li>
+      <li>CI/CD 부재 — 빌드/배포가 전부 수동</li>
+      <li>모놀리식 EXE 구조 — 일부 장애가 전체 프로그램 중단으로 이어짐</li>
+      <li>.NET Framework 버전 종속 — OS/런타임 업그레이드 호환성 리스크</li>
+    </ul>
+
+    <h3>영향도</h3>
+    <table class="impact-tbl">
+      <thead><tr><th>항목</th><th>영향</th></tr></thead>
+      <tbody>
+        <tr><td>업무 이동성</td><td>원내 설치 단말에 묶여 있어 원격·재택·출장 업무 불가</td></tr>
+        <tr><td>배포 비용</td><td>단말 수 × 업데이트 횟수만큼 인력·시간 소요</td></tr>
+        <tr><td>장애 범위</td><td>작은 버그가 전체 프로그램 중단으로 확산</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ 문제 2 ============ -->
+  <div class="problem">
+    <div class="problem-head">
+      <span class="problem-num">[문제 2]</span>
+      <span class="problem-title">시스템 분산 · 데이터 이중 입력</span>
+      <span class="sev critical">Critical</span>
+    </div>
+    <div class="problem-impact">동일 환자 정보를 3개 시스템에 반복 입력 → 오타 · 누락 · 통합 분석 불가</div>
+
+    <h3>현재 구조</h3>
+    <ul>
+      <li><b>성민CRM · MD소프트 · 종이차트</b> 세 시스템이 물리적으로 분리</li>
+      <li>환자 등록 시 동일 정보를 여러 시스템에 반복 입력</li>
+      <li>SOFTCRM / MCRM / IPLUS DB가 Linked Server로 하드 결합되어 분리 어려움</li>
+    </ul>
+
+    <h3>데이터 무결성 문제 <span style="font-size:11px;color:#8b92a0;font-weight:400">(성민CRM 기반 병원에서 공통적으로 관찰되는 패턴 · 저희 타 병원 사례 기준)</span></h3>
+    <ul>
+      <li><span class="code-inline">CUSTOM_MEMO</span> RTF 저장 — 검색 불가, 구조화 불가, 연동 불가</li>
+      <li><span class="code-inline">DECRYPTBYPASSPHRASE</span> 암호화 필드 — 패스프레이즈 공유, 복호화 비용으로 검색 저하</li>
+      <li>코드 체계 불일치 (예: 보험사 <span class="code-inline">INS00X</span> vs <span class="code-inline">0X</span>)</li>
+      <li><span class="code-inline">EMPLOYEE.EMP_NUM</span> 6자리 고정 — 스키마 변경 없이 확장 불가</li>
+      <li><span class="code-inline">MsgSndLst</span> SMS 이력 단일 테이블 수백만건 규모 — 파티셔닝 없음, 더미 레코드 혼입</li>
+      <li>사용이 중단된 레거시 테이블이 스키마에 남아 혼선 유발</li>
+    </ul>
+    <p style="font-size:11.5px;color:#8b92a0;margin-top:6px">* 실제 청주김안과 DB 상태는 파일럿 단계 "현황 분석"에서 정확히 확인 예정</p>
+
+    <h3>영향도</h3>
+    <table class="impact-tbl">
+      <thead><tr><th>지표</th><th>현재</th><th>개선 후 (아이차트)</th></tr></thead>
+      <tbody>
+        <tr><td>환자 등록 입력</td><td>3개 시스템 반복 입력</td><td>단일 고객뷰 · 1회 입력</td></tr>
+        <tr><td>통합 분석</td><td>불가 (시스템별 단절)</td><td>통합 DB · 전사 지표 가시화</td></tr>
+        <tr><td>메모 검색</td><td>RTF 불가</td><td>Fuzzy/전문 검색</td></tr>
+        <tr><td>DB 라이선스</td><td>MSSQL 유료</td><td>PostgreSQL 점진 이관 (오픈소스)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ 문제 3 ============ -->
+  <div class="problem">
+    <div class="problem-head">
+      <span class="problem-num">[문제 3]</span>
+      <span class="problem-title">검색·조회 성능 병목</span>
+      <span class="sev critical">Critical</span>
+    </div>
+    <div class="problem-impact">상담 중 대기 발생 · 리콜 업무 병목 · 사용자 체감 속도 저하</div>
+
+    <p style="font-size:12.5px;color:#8b92a0;margin:10px 0 4px;line-height:1.6">
+      ※ 아래 수치는 레거시 S-CRM이 사용 중인 <b>MSSQL DB 위에서 아이차트가 측정·개선한 p95</b> 값입니다.
+      동일 DB 위에서 운영되는 레거시 시스템에 직접 영향을 주던 <b>구조적 병목</b>으로, 스키마·인덱스 전략 부재가 근본 원인입니다.
+    </p>
+
+    <h3>측정된 p95 Latency (인덱스 최적화 전 → 후)</h3>
+    <table class="impact-tbl">
+      <thead><tr><th>대상 쿼리</th><th>Before (p95)</th><th>After (커버링 인덱스)</th></tr></thead>
+      <tbody>
+        <tr><td>고객 이름 검색</td><td>1.75초</td><td><b style="color:#22c55e">465ms (-73%)</b></td></tr>
+        <tr><td>예약 리콜 조회</td><td>7.14초</td><td><b style="color:#22c55e">764ms (-89%)</b></td></tr>
+        <tr><td>고객 이력 조회</td><td>3.3초</td><td><b style="color:#22c55e">0.1초 (-97%)</b></td></tr>
+        <tr><td>SMS 이력 조회 (대량 테이블)</td><td>7초</td><td><b style="color:#22c55e">0.5초 (-93%)</b></td></tr>
+        <tr><td>메모 조회 (<span class="code-inline">SP_CUSTOM_MEMO</span>)</td><td>14초</td><td><b style="color:#22c55e">0.9초 (-94%)</b></td></tr>
+      </tbody>
+    </table>
+
+    <h3>근본 원인</h3>
+    <ul>
+      <li>인덱스 전략 부재 — 현장에서 필요할 때마다 수동 추가</li>
+      <li>수평 확장 불가 — 단일 MSSQL 인스턴스에 모든 부하 집중</li>
+      <li>성능 측정 문화 부재 — p95/p99 지표 없이 감각적 튜닝</li>
+      <li>캐싱 전략 부재 — 동일 조회 반복 시 매번 DB 히트</li>
+      <li>Slow Query 모니터링·알림 없음</li>
+    </ul>
+  </div>
+
+  <!-- ============ 문제 4 ============ -->
+  <div class="problem">
+    <div class="problem-head">
+      <span class="problem-num">[문제 4]</span>
+      <span class="problem-title">보안 · 컴플라이언스 취약</span>
+      <span class="sev critical">Critical</span>
+    </div>
+    <div class="problem-impact">의료 데이터 관련 법·규정 준수 곤란 · 내부자 위협 탐지 불가</div>
+
+    <h3>인증 · 접근 제어</h3>
+    <ul>
+      <li>DB 접속 정보 <b>하드코딩</b> (소스/설정 파일 평문 저장)</li>
+      <li><b>RBAC 세분화 부족</b> — 직원 전원이 사실상 동일 권한</li>
+      <li><b>감사 로그(Audit) 부재</b> — 누가 언제 어떤 환자를 조회·수정했는지 추적 불가</li>
+      <li>단일 세션 정책 없음 — 한 계정 다중 로그인 허용</li>
+      <li>세션 타임아웃 부재 — 로그인 상태 무제한 유지</li>
+      <li>비밀번호 해시 알고리즘·복잡도·만료 정책 부재</li>
+    </ul>
+
+    <h3>데이터 보호</h3>
+    <ul>
+      <li>주민번호 <span class="code-inline">DECRYPTBYPASSPHRASE</span> 패스프레이즈 공유</li>
+      <li>내부망 통신 HTTPS/TLS 강제 부재</li>
+      <li>개인정보 대량 조회 임계 알림 없음</li>
+    </ul>
+
+    <h3>영향도</h3>
+    <table class="impact-tbl">
+      <thead><tr><th>항목</th><th>영향</th></tr></thead>
+      <tbody>
+        <tr><td>법·규정</td><td>개인정보보호법·의료법 로그 보존 요건 충족 어려움</td></tr>
+        <tr><td>내부자 위협</td><td>환자 정보 무단 열람 탐지 불가</td></tr>
+        <tr><td>사고 대응</td><td>침해 시 경로·범위 추적 불가</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ 문제 5 ============ -->
+  <div class="problem high">
+    <div class="problem-head">
+      <span class="problem-num">[문제 5]</span>
+      <span class="problem-title">통합 · 확장성 부재</span>
+      <span class="sev high">High</span>
+    </div>
+    <div class="problem-impact">검사 데이터 수기 이전 · 신규 서비스 연결마다 커스텀 개발</div>
+
+    <h3>장비 · 외부 연동</h3>
+    <ul>
+      <li><b>검사장비 수기 입력</b> — 시력·굴절·안압·OCT 등 장비 값을 사람이 차트에 옮겨 적음</li>
+      <li><b>CTI 콜센터 미연동</b> — 전화 수신 시 고객 자동 조회 불가</li>
+      <li>SMS/알림 채널 제한적 — 카카오톡·이메일·푸시 미지원 또는 별도 연동 필요</li>
+      <li>외부 API 연동 어려움 — 신규 마케팅 채널·보험사 API 연동마다 커스텀 개발</li>
+      <li>Webhook/이벤트 발행 부재 — 타 시스템 실시간 연동 불가</li>
+    </ul>
+
+    <h3>확장 비용</h3>
+    <ul>
+      <li>신규 장비 · 서비스 추가 = <b>유상 커스텀 개발</b></li>
+      <li>리포트 포맷 변경이 개발 작업 (사용자 커스터마이징 불가)</li>
+      <li>병원별 맞춤 UI 변경 시 전체 재개발</li>
+    </ul>
+  </div>
+
+  <!-- ============ 문제 6 ============ -->
+  <div class="problem high">
+    <div class="problem-head">
+      <span class="problem-num">[문제 6]</span>
+      <span class="problem-title">관측성 · 운영 체계 부재</span>
+      <span class="sev high">High</span>
+    </div>
+    <div class="problem-impact">장애 원인 파악 지연 · 사용자 제보로만 인지</div>
+
+    <h3>백엔드 · 운영</h3>
+    <ul>
+      <li>중앙 집중 로그·메트릭·트레이스 없음 — 에러는 사용자 제보로 인지</li>
+      <li>단일 창구 부재 — 시스템마다 별도 업체·별도 계약·별도 SLA</li>
+      <li>장애 원인이 어느 시스템인지 판단 자체에 시간 소요</li>
+      <li>장애 이력 DB 없음 — 동일 이슈 반복 발생</li>
+      <li>성능 베이스라인 없음 — "예전보다 느려졌다"를 정량 측정 불가</li>
+    </ul>
+
+    <h3>테스트 · 배포</h3>
+    <ul>
+      <li>회귀 테스트 자동화 부재 → 배포 리스크 높음</li>
+      <li>롤백 전략 없음 → 배포 실패 시 수동 복구</li>
+      <li>업무 매뉴얼 부재 또는 구버전 → 신규 직원 온보딩 곤란</li>
+    </ul>
+  </div>
+
+  <!-- ============ 문제 7 ============ -->
+  <div class="problem high">
+    <div class="problem-head">
+      <span class="problem-num">[문제 7]</span>
+      <span class="problem-title">AI/AX 관점의 구조적 한계</span>
+      <span class="sev high">High</span>
+    </div>
+    <div class="problem-impact">현재 레거시 구조에서는 AX(AI Transformation) 구현 사실상 불가</div>
+
+    <h3>데이터 파이프라인</h3>
+    <ul>
+      <li><b>데이터 정제 파이프라인 없음</b> — AI 학습용 데이터셋 구축 불가</li>
+      <li><b>Vector Search 불가</b> — MSSQL에 pgvector 상당 기능 없음 → 유사도·임베딩 저장 어려움</li>
+      <li>JSONB·반구조 데이터 저장 불가 — LLM 출력(요약/태그/메타) 저장 공간 부족</li>
+    </ul>
+
+    <h3>애플리케이션 계층</h3>
+    <ul>
+      <li>LLM 연동 API 레이어 없음 — Fat Client에서 Claude/OpenAI 직접 호출 시 <b>키 유출 리스크</b></li>
+      <li>실시간 스트리밍 UI 불가 — WinForms에서 토큰 스트리밍 응답 구현 난이도 높음</li>
+      <li>이벤트 기반 아키텍처 부재 — AI Agent의 Tool Call 연계 어려움</li>
+      <li>로그 수집 체계 없음 — AI 이상 감지·드리프트 탐지 불가</li>
+    </ul>
+  </div>
+
+  <!-- ============ 문제 8 ============ -->
+  <div class="problem medium">
+    <div class="problem-head">
+      <span class="problem-num">[문제 8]</span>
+      <span class="problem-title">비즈니스 연속성 리스크</span>
+      <span class="sev medium">Medium</span>
+    </div>
+    <div class="problem-impact">벤더 의존 · 라이선스 비용 · 인력 수급 리스크 누적</div>
+
+    <ul>
+      <li><b>벤더 락인</b> — 성민CRM 업체 의존, 계약/지원 종료 시 리스크</li>
+      <li><b>MSSQL 라이선스 비용</b> — 서버 증설마다 지속 증가</li>
+      <li><b>인력 수급 리스크</b> — C# WinForms + T-SQL 전문 개발자 확보 난이도 지속 상승</li>
+      <li>핵심 로직이 특정 개발자의 기억에 의존 (문서화 부재)</li>
+      <li>장기 누적 데이터의 스키마 정합성 확보 비용 → 이관 난이도 증가</li>
+    </ul>
+  </div>
+
+  <!-- ============ 우선순위 집계 ============ -->
+  <h2>우선순위 집계</h2>
+  <p class="subtitle" style="margin-bottom:18px">전체 <a href="issue-checklist.html" style="color:#4a9eff">이슈 체크리스트</a> 79건 중 영향도 상위 8개 문제를 위에서 상세 서술했습니다.</p>
+  <div class="tally">
+    <div class="tally-card">
+      <div class="tally-label">CRITICAL</div>
+      <div class="tally-count c-crit">17</div>
+      <div class="tally-desc">Windows 전용, 이중입력, 검색 성능, RBAC, 데이터 파이프라인 부재</div>
+    </div>
+    <div class="tally-card high">
+      <div class="tally-label">HIGH</div>
+      <div class="tally-count c-high">33</div>
+      <div class="tally-desc">배포 수동, RTF 메모, 인덱스 부재, 단일 세션 없음, 관측성 없음</div>
+    </div>
+    <div class="tally-card medium">
+      <div class="tally-label">MEDIUM</div>
+      <div class="tally-count c-mid">22</div>
+      <div class="tally-desc">캐싱, CI/CD, 다국어, Webhook, 문서화</div>
+    </div>
+    <div class="tally-card low">
+      <div class="tally-label">LOW</div>
+      <div class="tally-count c-low">7</div>
+      <div class="tally-desc">다크모드, 의존성 스캐닝, 성능 베이스라인</div>
+    </div>
+  </div>
+
+  <!-- ============ 요약 비교 ============ -->
+  <h2>레거시 vs 아이차트 요약</h2>
+  <div class="card">
+    <table class="tbl">
+      <thead>
+        <tr><th>영역</th><th class="red">레거시 (C# + MSSQL)</th><th class="blue">아이차트 (EyeChartPro)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>플랫폼</b></td><td>Windows 전용 Fat Client</td><td>Web 기반 (Express + Vanilla JS), 어디서든 접근</td></tr>
+        <tr><td><b>배포</b></td><td>PC마다 수동 설치</td><td>서버 1회 배포, 자동 반영</td></tr>
+        <tr><td><b>통합</b></td><td>3~4개 시스템 분산</td><td>단일 고객뷰, 단일 로그인</td></tr>
+        <tr><td><b>DB</b></td><td>MSSQL 유료, 크로스DB 결합</td><td>MSSQL 운영 (PostgreSQL 이관 검토)</td></tr>
+        <tr><td><b>성능</b></td><td>DB 인덱스 부재로 p95 1.75~14초</td><td>커버링 인덱스 적용 후 465ms~900ms</td></tr>
+        <tr><td><b>보안</b></td><td>RBAC·감사 로그 미흡</td><td>ECP_Auth + 단일 세션 + Login_History</td></tr>
+        <tr><td><b>관측성</b></td><td>없음</td><td>구조 로그 + k6/smoke 성능 테스트</td></tr>
+        <tr><td><b>확장성</b></td><td>신규 기능 = 커스텀 개발</td><td>표준화된 Route/Service/Schema 구조</td></tr>
+        <tr><td><b>AI/AX</b></td><td>구조적으로 불가</td><td>데이터 파이프라인 + Agent 기반</td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

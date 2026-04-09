@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>발표용 장표 — 청주김안과</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  body.slides-mode .lnb,
+  body.slides-mode .toc { display: none !important; }
+  body.slides-mode .main { margin-left: 0; max-width: 100%; padding: 0; }
+  body.slides-mode { overflow: hidden; }
+
+  .stage { position: fixed; inset: 0; background: #0b0f15; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  body[data-theme="light"] .stage { background: #fcfcfd; }
+
+  .slide { position: absolute; inset: 0; display: none; padding: 80px 100px 140px; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .slide.active { display: flex; animation: fadeIn .35s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .s-badge { display: inline-block; background: #1e3a5f; color: #4a9eff; font-size: 12px; font-weight: 800; padding: 8px 20px; border-radius: 999px; letter-spacing: 2px; margin-bottom: 40px; }
+  body[data-theme="light"] .s-badge { background: #dbeafe; color: #2563eb; }
+
+  .s-title { font-size: 60px; font-weight: 900; line-height: 1.25; margin-bottom: 36px; background: linear-gradient(90deg, #8fb8ff, #4a9eff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  body[data-theme="light"] .s-title { background: linear-gradient(90deg, #1e3a8a, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  .s-subtitle { font-size: 22px; color: #dfe2e8; margin-bottom: 44px; font-weight: 500; }
+  body[data-theme="light"] .s-subtitle { color: #4b5563; }
+
+  .s-meta { font-size: 14px; color: #8b92a0; line-height: 1.9; }
+  body[data-theme="light"] .s-meta { color: #6b7280; }
+  .s-meta b { color: #e4e6eb; font-weight: 700; }
+  body[data-theme="light"] .s-meta b { color: #111827; }
+
+  .s-h2 { font-size: 42px; font-weight: 800; margin-bottom: 14px; color: #fff; }
+  body[data-theme="light"] .s-h2 { color: #111827; }
+  .s-lead { font-size: 18px; color: #8b92a0; margin-bottom: 40px; }
+  body[data-theme="light"] .s-lead { color: #6b7280; }
+
+  .s-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1100px; text-align: left; }
+  .s-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; width: 100%; max-width: 1200px; text-align: left; }
+  .s-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; width: 100%; max-width: 1200px; text-align: left; }
+
+  .s-card { background: #161b22; border: 1px solid #1f2633; border-radius: 12px; padding: 26px; }
+  body[data-theme="light"] .s-card { background: #fff; border-color: #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+  .s-card.red { border-top: 4px solid #ef4444; }
+  .s-card.blue { border-top: 4px solid #4a9eff; }
+  .s-card.green { border-top: 4px solid #22c55e; }
+
+  .s-card h4 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  body[data-theme="light"] .s-card h4 { color: #111827; }
+  .s-card ul { list-style: none; }
+  .s-card li { position: relative; padding: 6px 0 6px 18px; font-size: 14px; color: #dfe2e8; line-height: 1.55; }
+  body[data-theme="light"] .s-card li { color: #1f2937; }
+  .s-card li::before { content: "›"; position: absolute; left: 0; color: #4a9eff; font-weight: 700; }
+
+  .s-big-metric { font-size: 72px; font-weight: 900; line-height: 1; margin-bottom: 8px; text-align: center; }
+  .s-big-metric.green { color: #22c55e; }
+  .s-big-metric.blue { color: #4a9eff; }
+  .s-big-metric.yellow { color: #eab308; }
+  .s-big-metric.red { color: #ef4444; }
+  .s-metric-label { font-size: 16px; font-weight: 700; text-align: center; }
+  body[data-theme="light"] .s-metric-label { color: #111827; }
+  .s-metric-desc { font-size: 13px; color: #8b92a0; margin-top: 6px; text-align: center; }
+
+  .s-phase { background: #161b22; border: 1px solid #1f2633; border-radius: 10px; padding: 22px 16px; border-top: 3px solid #4a9eff; }
+  body[data-theme="light"] .s-phase { background: #fff; border: 1px solid #e5e7eb; border-top: 3px solid #4a9eff; }
+  .s-phase-no { font-size: 11px; color: #4a9eff; font-weight: 800; letter-spacing: 1px; text-align: center; }
+  .s-phase-title { font-size: 17px; font-weight: 800; margin: 6px 0; color: #fff; text-align: center; }
+  body[data-theme="light"] .s-phase-title { color: #111827; }
+  .s-phase-week { font-size: 12px; color: #22c55e; background: #14532d; display: block; width: fit-content; margin: 0 auto 12px; padding: 3px 10px; border-radius: 999px; }
+  body[data-theme="light"] .s-phase-week { background: #dcfce7; color: #15803d; }
+  .s-phase ul { list-style: none; }
+  .s-phase li { font-size: 12.5px; color: #dfe2e8; padding: 3px 0 3px 14px; position: relative; }
+  body[data-theme="light"] .s-phase li { color: #1f2937; }
+  .s-phase li::before { content: "✓"; position: absolute; left: 0; color: #22c55e; font-weight: 800; }
+
+  .s-tbl { width: 100%; max-width: 1100px; border-collapse: separate; border-spacing: 0; border: 1px solid #1f2633; border-radius: 10px; overflow: hidden; background: #161b22; text-align: left; }
+  body[data-theme="light"] .s-tbl { background: #fff; border-color: #e5e7eb; }
+  .s-tbl th, .s-tbl td { padding: 16px 22px; border-bottom: 1px solid #1f2633; font-size: 15px; }
+  body[data-theme="light"] .s-tbl th, body[data-theme="light"] .s-tbl td { border-bottom-color: #e5e7eb; }
+  .s-tbl thead th { background: #0f1419; color: #8b92a0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  body[data-theme="light"] .s-tbl thead th { background: #f3f4f6; color: #6b7280; }
+  .s-tbl td:first-child { font-weight: 700; width: 180px; color: #e4e6eb; }
+  body[data-theme="light"] .s-tbl td:first-child { color: #111827; }
+  .s-tbl .bef { color: #8b92a0; }
+  .s-tbl .aft { color: #4a9eff; font-weight: 600; }
+  body[data-theme="light"] .s-tbl .aft { color: #2563eb; }
+  .s-tbl tbody tr:last-child td { border-bottom: 0; }
+
+  /* Why-us slides */
+  .s-reason { display: flex; align-items: flex-start; gap: 18px; background: #161b22; border: 1px solid #1f2633; border-left: 4px solid #4a9eff; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; text-align: left; width: 100%; max-width: 1000px; }
+  body[data-theme="light"] .s-reason { background: #f5f9ff; border: 1px solid #dbeafe; border-left: 4px solid #2563eb; }
+  .s-reason-icon { width: 44px; height: 44px; border-radius: 10px; background: #1e3a5f; color: #4a9eff; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  body[data-theme="light"] .s-reason-icon { background: #2563eb; color: #fff; }
+  .s-reason-body { flex: 1; }
+  .s-reason-title { font-size: 16px; font-weight: 800; color: #4a9eff; margin-bottom: 6px; }
+  body[data-theme="light"] .s-reason-title { color: #2563eb; }
+  .s-reason-text { font-size: 14.5px; color: #dfe2e8; line-height: 1.7; }
+  body[data-theme="light"] .s-reason-text { color: #1f2937; }
+  .s-reason-text .pill { display: inline-block; font-size: 12px; font-weight: 700; color: #4a9eff; background: #1c2838; padding: 2px 10px; border-radius: 999px; margin: 0 3px; }
+  body[data-theme="light"] .s-reason-text .pill { background: #dbeafe; color: #2563eb; }
+  .s-reason-metrics { display: flex; gap: 26px; margin-top: 10px; }
+  .s-reason-metric b { font-size: 22px; font-weight: 900; color: #4a9eff; }
+  body[data-theme="light"] .s-reason-metric b { color: #2563eb; }
+  .s-reason-metric span { font-size: 12px; color: #8b92a0; margin-left: 6px; }
+
+  .s-closing { margin-top: 28px; padding: 22px 30px; background: #1c2838; border: 1px solid #2a3f5f; border-radius: 10px; font-size: 17px; font-weight: 800; color: #fff; max-width: 1000px; width: 100%; text-align: center; }
+  body[data-theme="light"] .s-closing { background: #eff6ff; border-color: #bfdbfe; color: #1e3a8a; }
+
+  .s-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; max-width: 1050px; }
+  .s-dual-box { border-radius: 14px; padding: 30px 28px; text-align: left; }
+  .s-dual-box.left { background: #0f1f3a; border: 1px solid #1e3a5f; }
+  body[data-theme="light"] .s-dual-box.left { background: #eff6ff; border: 1px solid #dbeafe; }
+  .s-dual-box.right { background: #2d0f14; border: 1px solid #5f1e1e; }
+  body[data-theme="light"] .s-dual-box.right { background: #fef2f2; border: 1px solid #fecaca; }
+  .s-dual-head { font-size: 18px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+  .s-dual-box.left .s-dual-head { color: #4a9eff; }
+  body[data-theme="light"] .s-dual-box.left .s-dual-head { color: #2563eb; }
+  .s-dual-box.right .s-dual-head { color: #ef4444; }
+  body[data-theme="light"] .s-dual-box.right .s-dual-head { color: #dc2626; }
+  .s-dual-sub { font-size: 11px; color: #8b92a0; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 18px; }
+  .s-dual-box ul { list-style: none; }
+  .s-dual-box li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; margin-bottom: 8px; background: rgba(255,255,255,.04); border-radius: 8px; font-size: 14px; color: #dfe2e8; line-height: 1.55; }
+  body[data-theme="light"] .s-dual-box li { background: #fff; color: #1f2937; }
+  .s-dual-box.left li::before { content: "✓"; color: #4a9eff; font-weight: 900; flex-shrink: 0; }
+  .s-dual-box.right li::before { content: "✕"; color: #ef4444; font-weight: 900; flex-shrink: 0; }
+
+  /* Controls */
+  .nav-bar { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: #161b22; border: 1px solid #2a3142; border-radius: 999px; padding: 10px 16px; display: flex; align-items: center; gap: 10px; z-index: 200; box-shadow: 0 4px 20px rgba(0,0,0,.3); }
+  body[data-theme="light"] .nav-bar { background: #fff; border-color: #e5e7eb; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+  .nav-btn { background: transparent; border: 1px solid #2a3142; color: #dfe2e8; padding: 8px 14px; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  body[data-theme="light"] .nav-btn { color: #1f2937; border-color: #e5e7eb; }
+  .nav-btn:hover { background: #1c2838; color: #4a9eff; border-color: #4a9eff; }
+  body[data-theme="light"] .nav-btn:hover { background: #eff6ff; color: #2563eb; border-color: #2563eb; }
+  .nav-btn.icon-only { padding: 8px 12px; }
+  .nav-counter { font-size: 13px; font-weight: 700; color: #8b92a0; padding: 0 6px; min-width: 56px; text-align: center; }
+  body[data-theme="light"] .nav-counter { color: #6b7280; }
+
+  .slide-indicator { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background: rgba(22,27,34,.8); backdrop-filter: blur(8px); border: 1px solid #2a3142; color: #8b92a0; padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 1px; z-index: 200; }
+  body[data-theme="light"] .slide-indicator { background: rgba(255,255,255,.85); border-color: #e5e7eb; color: #6b7280; }
+
+  .slide-home { position: fixed; top: 22px; left: 24px; z-index: 200; background: rgba(22,27,34,.85); backdrop-filter: blur(8px); border: 1px solid #2a3142; color: #dfe2e8; padding: 9px 18px; border-radius: 999px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .15s; }
+  body[data-theme="light"] .slide-home { background: rgba(255,255,255,.9); border-color: #e5e7eb; color: #1f2937; }
+  .slide-home:hover { color: #4a9eff; border-color: #4a9eff; background: rgba(28,40,56,.9); }
+  body[data-theme="light"] .slide-home:hover { color: #2563eb; border-color: #2563eb; background: #eff6ff; }
+</style>
+</head>
+<body class="slides-mode">
+<script>window.CURRENT_PAGE = 'slides';</script>
+<script src="../assets/layout.js" data-base="../"></script>
+
+<div class="slide-indicator">청주김안과 · TECHNICAL REPORT</div>
+
+<div class="stage">
+
+  <!-- 1: Cover -->
+  <section class="slide active">
+    <div class="s-badge">TECHNICAL ADVISORY REPORT</div>
+    <div class="s-title">청주김안과<br>차세대 CRM·EMR 도입 제안</div>
+    <div class="s-subtitle">환자 여정 통합 / 경영 가시화 / AI 전환 기반</div>
+    <div class="s-meta">
+      EyeChartPro + LOOCUS VISION + CTI<br>
+      <b>작성일</b>: 2026-04-09 &nbsp;|&nbsp; <b>대상</b>: 청주김안과
+    </div>
+  </section>
+
+  <!-- 2: About Visuworks -->
+  <section class="slide">
+    <div class="s-badge">ABOUT VISUWORKS</div>
+    <div class="s-h2">비쥬웍스 소개</div>
+    <div class="s-lead">병원이 <b>감이 아니라 데이터로 판단하고 성장</b>하게 만드는 팀입니다</div>
+
+    <div class="s-reason">
+      <div class="s-reason-icon">🏥</div>
+      <div class="s-reason-body">
+        <div class="s-reason-title">현장 경험</div>
+        <div class="s-reason-text">
+          비앤빛안과와 10년을 함께하며, <b>상담 구조 설계 · AI 솔루션 개발 · 성과 측정 체계</b>까지 병원 운영 전반을 만들어 왔습니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="s-reason">
+      <div class="s-reason-icon">📈</div>
+      <div class="s-reason-body">
+        <div class="s-reason-title">검증된 성과</div>
+        <div class="s-reason-text">
+          수술 전환율 <span class="pill">+12.1%p</span>, 프리미엄 수술 비중 <span class="pill">+4.5%p</span>. <b>비앤빛 실사용 결과</b>입니다.
+        </div>
+        <div class="s-reason-metrics">
+          <div class="s-reason-metric"><b>+12.1%p</b><span>수술 전환율</span></div>
+          <div class="s-reason-metric"><b>+4.5%p</b><span>프리미엄 수술 비중</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-reason">
+      <div class="s-reason-icon">🔄</div>
+      <div class="s-reason-body">
+        <div class="s-reason-title">매출로 연결</div>
+        <div class="s-reason-text">
+          검사부터 수술까지 <b>끊기지 않는 데이터 흐름</b>을 만들어, 전환율과 객단가를 올립니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="s-closing">효율화와 매출 극대화를 동시에 — 그것이 비쥬웍스가 하는 일입니다</div>
+  </section>
+
+  <!-- 3: Why now -->
+  <section class="slide">
+    <div class="s-badge">WHY NOW</div>
+    <div class="s-h2">왜 지금, 차세대 플랫폼인가</div>
+    <div class="s-lead">환자는 <b>설득이 아니라 납득</b>으로 결정합니다</div>
+
+    <div class="s-dual">
+      <div class="s-dual-box left">
+        <div class="s-dual-head">👤 환자가 바뀌었습니다</div>
+        <div class="s-dual-sub">Patient Changes</div>
+        <ul>
+          <li>정보는 넘치지만, 복잡한 설명을 오래 듣고 움직이지 않습니다</li>
+          <li>빠르고 분명한 판단을 원합니다</li>
+          <li>납득될 때 선택합니다</li>
+        </ul>
+      </div>
+      <div class="s-dual-box right">
+        <div class="s-dual-head">🏥 병원은 아직 준비되지 않았습니다</div>
+        <div class="s-dual-sub">Hospital Status</div>
+        <ul>
+          <li>여전히 경험과 직관 중심으로 운영되는 구간이 많습니다</li>
+          <li>마케팅 · 콜센터 · CRM/EMR 데이터가 끊겨 있습니다</li>
+          <li>무엇이 매출로 이어지는지 설명할 수 없습니다</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="s-closing">이 간극을 메우는 것이 비쥬웍스가 하는 일이고, 비앤빛안과에서 먼저 검증한 이유입니다</div>
+  </section>
+
+  <!-- 4: AS-IS -->
+  <section class="slide">
+    <div class="s-badge">AS-IS</div>
+    <div class="s-h2">현재 운영 환경의 한계</div>
+    <div class="s-lead">3개 시스템 분산 · 종이차트 병행 · 통합 분석 불가</div>
+    <div class="s-grid-3">
+      <div class="s-card red">
+        <h4>🗂 시스템 분산</h4>
+        <ul>
+          <li>성민CRM + MD소프트 + 종이차트</li>
+          <li>동일 환자 정보 반복 입력</li>
+          <li>통합 조회 불가</li>
+        </ul>
+      </div>
+      <div class="s-card red">
+        <h4>⏱ 성능 병목</h4>
+        <ul>
+          <li>DB 인덱스 전략 부재</li>
+          <li>주요 조회 p95 지연</li>
+          <li>성능 측정 문화 부재</li>
+        </ul>
+      </div>
+      <div class="s-card red">
+        <h4>🔐 보안·관측 한계</h4>
+        <ul>
+          <li>RBAC·감사로그 미흡</li>
+          <li>단일 세션 정책 없음</li>
+          <li>중앙 로그 체계 부재</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5: TO-BE -->
+  <section class="slide">
+    <div class="s-badge">TO-BE</div>
+    <div class="s-h2">통합 플랫폼으로 전환</div>
+    <div class="s-lead">파편화된 시스템을 하나의 흐름으로</div>
+    <div class="s-grid-4">
+      <div class="s-card blue"><h4>👁 LOOCUS VISION</h4><ul><li>안과 검사장비 통합 뷰어</li></ul></div>
+      <div class="s-card blue"><h4>👥 CRM 아이차트</h4><ul><li>환자 여정 통합 관리</li></ul></div>
+      <div class="s-card blue"><h4>📞 CTI 콜센터</h4><ul><li>전화·상담 통합 응대</li></ul></div>
+      <div class="s-card blue"><h4>📄 EMR 전자차트</h4><ul><li>의무기록·처방·수납</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 6: Control Tower -->
+  <section class="slide">
+    <div class="s-badge">CONTROL TOWER</div>
+    <div class="s-h2">경영진 통합 컨트롤 타워</div>
+    <div class="s-lead">데이터가 연결되면, 보이지 않던 운영이 숫자로 설명됩니다</div>
+    <table class="s-tbl">
+      <thead><tr><th>구분</th><th>현재</th><th>도입 후</th></tr></thead>
+      <tbody>
+        <tr><td>매출 파악</td><td class="bef">월말 합산 중심</td><td class="aft">일별·수술별·원장별 실시간</td></tr>
+        <tr><td>상담 성과</td><td class="bef">감으로 판단</td><td class="aft">전환율·프리미엄 수치화</td></tr>
+        <tr><td>마케팅 ROI</td><td class="bef">유입→수술 연결 불가</td><td class="aft">채널별 전환 추적</td></tr>
+        <tr><td>운영 병목</td><td class="bef">파악 어려움</td><td class="aft">체류·이탈 구간 가시화</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 7: Adoption Plan -->
+  <section class="slide">
+    <div class="s-badge">ADOPTION PLAN</div>
+    <div class="s-h2">5단계 도입 로드맵</div>
+    <div class="s-lead">안정적 전환을 위한 단계별 전개</div>
+    <div class="s-grid-5">
+      <div class="s-phase">
+        <div class="s-phase-no">STEP 1</div>
+        <div class="s-phase-title">현황 분석</div>
+        <div class="s-phase-week">2주</div>
+        <ul><li>시스템 분석</li><li>차트 분석</li><li>요구사항 정의</li></ul>
+      </div>
+      <div class="s-phase">
+        <div class="s-phase-no">STEP 2</div>
+        <div class="s-phase-title">데이터 이관</div>
+        <div class="s-phase-week">3주</div>
+        <ul><li>고객 마이그</li><li>예약·수술</li><li>코드 매핑</li></ul>
+      </div>
+      <div class="s-phase">
+        <div class="s-phase-no">STEP 3</div>
+        <div class="s-phase-title">커스터마이징</div>
+        <div class="s-phase-week">4주</div>
+        <ul><li>검사 항목</li><li>상담 양식</li><li>리콜 정책</li></ul>
+      </div>
+      <div class="s-phase">
+        <div class="s-phase-no">STEP 4</div>
+        <div class="s-phase-title">파일럿 운영</div>
+        <div class="s-phase-week">2주</div>
+        <ul><li>병행 운영</li><li>안정성 검증</li><li>개선 반영</li></ul>
+      </div>
+      <div class="s-phase">
+        <div class="s-phase-no">STEP 5</div>
+        <div class="s-phase-title">전면 오픈</div>
+        <div class="s-phase-week">1주</div>
+        <ul><li>전 직원 전환</li><li>원내 상주 지원</li><li>정식 운영</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8: Impact -->
+  <section class="slide">
+    <div class="s-badge">IMPACT</div>
+    <div class="s-h2">도입 후 기대 효과</div>
+    <div class="s-lead">업무 효율 · 데이터 활용 · 확장성 · 환자 관리</div>
+    <table class="s-tbl">
+      <thead><tr><th>영역</th><th>Before</th><th>After</th></tr></thead>
+      <tbody>
+        <tr><td>업무 효율</td><td class="bef">3개 시스템 이중 입력</td><td class="aft">1개 시스템 단일 입력</td></tr>
+        <tr><td>데이터 활용</td><td class="bef">통합 분석 불가</td><td class="aft">실시간 통합 대시보드</td></tr>
+        <tr><td>확장성</td><td class="bef">신규 기능마다 커스텀 개발</td><td class="aft">표준 구조 기반 신속 확장</td></tr>
+        <tr><td>환자 관리</td><td class="bef">단계별 분절</td><td class="aft">End-to-End 단일 고객뷰</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 9: Foundation -->
+  <section class="slide">
+    <div class="s-badge">FOUNDATION</div>
+    <div class="s-h2">탄탄한 기술적 기반</div>
+    <div class="s-lead">AX의 출발선에 바로 설 수 있는 엔지니어링 자산</div>
+    <div class="s-grid-3">
+      <div class="s-card green">
+        <h4>◉ 표준화된 아키텍처</h4>
+        <ul><li>Route / Service / Schema 3레이어</li><li>Service 31개 모듈 분리</li><li>개발 표준 문서화</li></ul>
+      </div>
+      <div class="s-card green">
+        <h4>⚡ 실측된 DB 성능</h4>
+        <ul><li>커버링 인덱스 p95 최대 -89%</li><li>k6 시나리오 정량 측정</li><li>smoke 테스트 5종</li></ul>
+      </div>
+      <div class="s-card green">
+        <h4>🔍 요청 단위 추적</h4>
+        <ul><li>구조화된 로깅</li><li>reqId 자동 컨텍스트</li><li>중앙 에러 처리</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10: AX -->
+  <section class="slide">
+    <div class="s-badge">AX — AI TRANSFORMATION</div>
+    <div class="s-h2">AI 전환 핵심 영역</div>
+    <div class="s-lead">자동화 · 예측 · 지능화</div>
+    <div class="s-grid-3">
+      <div class="s-card blue">
+        <h4>★ 리콜 예측</h4>
+        <ul><li>재내원 확률 모델링</li><li>우선순위 자동 정렬</li><li>재내원율 상승 기대</li></ul>
+      </div>
+      <div class="s-card blue">
+        <h4>◈ 소개 고객 매칭</h4>
+        <ul><li>임베딩 유사도 검색</li><li>높은 신뢰도에서 자동 매칭</li><li>오매칭 대폭 감소</li></ul>
+      </div>
+      <div class="s-card blue">
+        <h4>✎ 상담 어시스턴트</h4>
+        <ul><li>음성 → 구조화 메모</li><li>고객 이력 요약</li><li>상담 참고 정보 추천</li></ul>
+      </div>
+    </div>
+    <p style="font-size:12px;color:#8b92a0;margin-top:14px">※ 전면 오픈 이후 단계 착수 · 구체 수치는 파일럿에서 측정</p>
+  </section>
+
+  <!-- 11: Why us -->
+  <section class="slide">
+    <div class="s-badge">WHY VISUWORKS</div>
+    <div class="s-h2">왜 비쥬웍스와 함께해야 하는가</div>
+    <div class="s-lead">안과에 최적화된 경험 · 검증된 성과 · 단일 파트너십</div>
+    <div class="s-grid-4">
+      <div class="s-card blue">
+        <h4>🎯 안과 전문</h4>
+        <ul>
+          <li>10년간 안과 운영 데이터 축적</li>
+          <li>검사 → 상담 → 수술 → AS 전 과정 이해</li>
+          <li>라식 · 라섹 · 백내장 · 노안 각각의 전환 패턴 반영</li>
+        </ul>
+      </div>
+      <div class="s-card blue">
+        <h4>📊 실증된 숫자</h4>
+        <ul>
+          <li>수술 전환율 +12.1%p</li>
+          <li>프리미엄 수술 비중 +4.5%p</li>
+          <li>비앤빛안과 실사용 결과</li>
+        </ul>
+      </div>
+      <div class="s-card blue">
+        <h4>🛠 단일 파트너</h4>
+        <ul>
+          <li>CRM · EMR · CTI · 검사장비 통합</li>
+          <li>벤더 여러 곳 조율 불필요</li>
+          <li>SLA · 장애대응 단일 창구</li>
+        </ul>
+      </div>
+      <div class="s-card blue">
+        <h4>🤖 AI 전환 준비</h4>
+        <ul>
+          <li>AX(AI Transformation) 로드맵 보유</li>
+          <li>리콜 예측 · 상담 요약 · Agent 설계</li>
+          <li>전면 오픈 이후 단계 착수</li>
+        </ul>
+      </div>
+    </div>
+    <div class="s-closing">검증된 성과 + 안과 특화 + 단일 파트너 = 도입 리스크 최소화</div>
+  </section>
+
+  <!-- 12: Conclusion -->
+  <section class="slide">
+    <div class="s-badge">CONCLUSION</div>
+    <div class="s-title" style="font-size:50px;">지금이 전환의 적기입니다</div>
+    <div class="s-subtitle">탄탄한 기반 위에서 그리는 AI 전환의 출발선</div>
+    <div class="s-meta" style="max-width:700px; line-height:2;">
+      단기 — <b>관측성 · DB 성능 · 데이터 기반</b> 확보<br>
+      중기 — <b>리콜 예측 · 소개 매칭 · 상담 요약</b> 자동화<br>
+      장기 — <b>AI Agent 기반 자율 운영</b> 전환
+    </div>
+  </section>
+
+  <!-- 13: Call to action -->
+  <section class="slide">
+    <div class="s-badge">CALL TO ACTION</div>
+    <div class="s-title" style="font-size:56px;">AI 병원 운영 표준,<br>지금 시작하세요</div>
+    <div class="s-subtitle">개별 기능은 각각의 문제를 해결하지만, <b>통합은 병원의 운영 구조 자체</b>를 바꿉니다</div>
+    <div class="s-meta" style="margin-top:30px;">
+      <b>문의</b> : 비쥬웍스 &nbsp;|&nbsp; <b>제안일</b> : 2026-04-09
+    </div>
+  </section>
+
+  <!-- 14: Thank you -->
+  <section class="slide">
+    <div class="s-badge">THANK YOU</div>
+    <div class="s-title">감사합니다</div>
+    <div class="s-subtitle">함께 만들어갈 청주김안과의 차세대 플랫폼</div>
+    <div class="s-meta">
+      EyeChartPro · LOOCUS VISION · CTI · EMR<br>
+      <b>2026-04-09</b>
+    </div>
+  </section>
+
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn icon-only" id="navPrev" title="이전 (←)">◀</button>
+  <div class="nav-counter" id="navCounter">1 / 14</div>
+  <button class="nav-btn icon-only" id="navNext" title="다음 (→)">▶</button>
+  <button class="nav-btn" id="navFull" title="전체화면 (F)">⛶ Full</button>
+  <a class="nav-btn" href="../index.html" title="홈">⌂ Home</a>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let idx = 0;
+  const counter = document.getElementById('navCounter');
+
+  function show(n) {
+    idx = (n + total) % total;
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    counter.textContent = (idx + 1) + ' / ' + total;
+  }
+  document.getElementById('navPrev').onclick = () => show(idx - 1);
+  document.getElementById('navNext').onclick = () => show(idx + 1);
+  document.getElementById('navFull').onclick = () => {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  };
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(idx + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(idx - 1); }
+    else if (e.key === 'f' || e.key === 'F') document.getElementById('navFull').click();
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(total - 1);
+  });
+  show(0);
+</script>
+</body>
+</html>
