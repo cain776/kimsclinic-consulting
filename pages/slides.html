@@ -10,20 +10,56 @@
   body.slides-mode .main { margin-left: 0; max-width: 100%; padding: 0; }
   body.slides-mode { overflow: hidden; }
 
+  :root { --slide-w: 1150px; }
+
+  .s-agenda { display:grid; grid-template-columns: repeat(4,1fr); gap: 22px; width:100%; max-width: var(--slide-w); text-align:left; }
+  .s-agenda-card { background:#161b22; border:1px solid #1f2633; border-left: 3px solid #4a9eff; border-radius: 14px; padding: 28px 26px 26px; display:flex; flex-direction:column; }
+  body[data-theme="light"] .s-agenda-card { background:#fff; border-color:#e5e7eb; border-left-color:#2563eb; box-shadow: 0 1px 3px rgba(0,0,0,.05);}
+  .s-agenda-head { display:flex; align-items:center; justify-content:space-between; margin-bottom: 22px; }
+  .s-agenda-num { width: 34px; height: 34px; border-radius: 999px; background:#1e3a5f; color:#8fb8ff; font-size: 13px; font-weight: 800; display:flex; align-items:center; justify-content:center; }
+  body[data-theme="light"] .s-agenda-num { background:#e0e7ff; color:#4338ca;}
+  .s-agenda-icon { font-size: 26px; color:#4a9eff; }
+  body[data-theme="light"] .s-agenda-icon { color:#2563eb;}
+  .s-agenda-title { font-size: 19px; font-weight: 800; color:#e4e6eb; line-height: 1.4; padding-bottom: 18px; border-bottom: 1px solid #2a3142; margin-bottom: 14px; height: calc(19px * 1.4 * 2 + 18px); box-sizing: content-box; }
+  body[data-theme="light"] .s-agenda-title { color:#1f2937; border-bottom-color:#e5e7eb;}
+  .s-agenda-sub { font-size: 12.5px; color:#8b92a0; margin-top: auto; }
+
+  .s-iconcard { background:#161b22; border:1px solid #1f2633; border-radius:14px; padding: 26px 26px 22px; text-align:left; }
+  body[data-theme="light"] .s-iconcard { background:#fff; border-color:#e5e7eb; box-shadow:0 1px 3px rgba(0,0,0,.05);}
+  .s-iconcard-head { display:flex; align-items:center; gap:14px; padding-bottom:16px; border-bottom:1px solid #2a3142; margin-bottom:16px;}
+  body[data-theme="light"] .s-iconcard-head { border-bottom-color:#e5e7eb;}
+  .s-iconcard-ico { width:48px; height:48px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;}
+  .s-iconcard-ico.red { background:#2d0f14; color:#ef4444;} body[data-theme="light"] .s-iconcard-ico.red { background:#fee2e2;}
+  .s-iconcard-ico.orange { background:#2d1a0a; color:#f97316;} body[data-theme="light"] .s-iconcard-ico.orange { background:#ffedd5;}
+  .s-iconcard-ico.purple { background:#1e1a3a; color:#a855f7;} body[data-theme="light"] .s-iconcard-ico.purple { background:#ede9fe;}
+  .s-iconcard-label { font-size:11px; letter-spacing:1.5px; color:#8b92a0; font-weight:700;}
+  .s-iconcard-title { font-size:20px; font-weight:800; color:#e4e6eb; margin-top:2px;}
+  body[data-theme="light"] .s-iconcard-title { color:#111827;}
+  .s-iconcard ul { list-style:none;}
+  .s-iconcard li { position:relative; padding:5px 0 5px 12px; font-size:13.5px; color:#dfe2e8; line-height:1.6;}
+  body[data-theme="light"] .s-iconcard li { color:#1f2937;}
+  .s-iconcard li::before { content:"•"; position:absolute; left:0; color:#8b92a0;}
+
+  .s-flow { display:flex; align-items:center; justify-content:center; gap:14px; margin-top:22px; flex-wrap:wrap;}
+  .s-flow-pill { font-size:12.5px; color:#dfe2e8; background:#161b22; border:1px solid #2a3142; border-radius:999px; padding:6px 16px;}
+  body[data-theme="light"] .s-flow-pill { background:#f3f4f6; border-color:#e5e7eb; color:#374151;}
+  .s-flow-op { color:#8b92a0; font-weight:700;}
+  .s-flow-result { color:#ef4444; font-weight:800; font-size:14px;}
+
   .stage { position: fixed; inset: 0; background: #0b0f15; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   body[data-theme="light"] .stage { background: #fcfcfd; }
 
-  .slide { position: absolute; inset: 0; display: none; padding: 80px 100px 140px; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .slide { position: absolute; inset: 0; display: none; padding: 70px 90px 130px; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow-y: auto; }
   .slide.active { display: flex; animation: fadeIn .35s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
-  .s-badge { display: inline-block; background: #1e3a5f; color: #4a9eff; font-size: 12px; font-weight: 800; padding: 8px 20px; border-radius: 999px; letter-spacing: 2px; margin-bottom: 40px; }
+  .s-badge { display: inline-block; background: #1e3a5f; color: #4a9eff; font-size: 12px; font-weight: 800; padding: 7px 18px; border-radius: 999px; letter-spacing: 2px; margin-bottom: 26px; }
   body[data-theme="light"] .s-badge { background: #dbeafe; color: #2563eb; }
 
-  .s-title { font-size: 60px; font-weight: 900; line-height: 1.25; margin-bottom: 36px; background: linear-gradient(90deg, #8fb8ff, #4a9eff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .s-title { font-size: 56px; font-weight: 900; line-height: 1.25; margin-bottom: 28px; background: linear-gradient(90deg, #8fb8ff, #4a9eff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   body[data-theme="light"] .s-title { background: linear-gradient(90deg, #1e3a8a, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-  .s-subtitle { font-size: 22px; color: #dfe2e8; margin-bottom: 44px; font-weight: 500; }
+  .s-subtitle { font-size: 20px; color: #dfe2e8; margin-bottom: 32px; font-weight: 500; }
   body[data-theme="light"] .s-subtitle { color: #4b5563; }
 
   .s-meta { font-size: 14px; color: #8b92a0; line-height: 1.9; }
@@ -31,452 +67,1415 @@
   .s-meta b { color: #e4e6eb; font-weight: 700; }
   body[data-theme="light"] .s-meta b { color: #111827; }
 
-  .s-h2 { font-size: 42px; font-weight: 800; margin-bottom: 14px; color: #fff; }
+  .s-h2 { font-size: 38px; font-weight: 800; margin-bottom: 10px; color: #fff; }
   body[data-theme="light"] .s-h2 { color: #111827; }
-  .s-lead { font-size: 18px; color: #8b92a0; margin-bottom: 40px; }
+  .s-lead { font-size: 17px; color: #8b92a0; margin-bottom: 30px; }
   body[data-theme="light"] .s-lead { color: #6b7280; }
 
-  .s-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1100px; text-align: left; }
-  .s-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; width: 100%; max-width: 1200px; text-align: left; }
-  .s-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; width: 100%; max-width: 1200px; text-align: left; }
+  .s-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: var(--slide-w); text-align: left; }
+  .s-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: var(--slide-w); text-align: left; }
+  .s-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; max-width: var(--slide-w); text-align: left; }
+  .s-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; width: 100%; max-width: var(--slide-w); text-align: left; }
 
-  .s-card { background: #161b22; border: 1px solid #1f2633; border-radius: 12px; padding: 26px; }
+  .s-card { background: #161b22; border: 1px solid #1f2633; border-radius: 12px; padding: 22px; }
   body[data-theme="light"] .s-card { background: #fff; border-color: #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
   .s-card.red { border-top: 4px solid #ef4444; }
   .s-card.blue { border-top: 4px solid #4a9eff; }
   .s-card.green { border-top: 4px solid #22c55e; }
+  .s-card.orange { border-top: 4px solid #f97316; }
+  .s-card.purple { border-top: 4px solid #a855f7; }
 
-  .s-card h4 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .s-card h4 { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   body[data-theme="light"] .s-card h4 { color: #111827; }
+  .s-card .sub { font-size: 12px; color: #8b92a0; font-weight: 600; margin-bottom: 10px; }
   .s-card ul { list-style: none; }
-  .s-card li { position: relative; padding: 6px 0 6px 18px; font-size: 14px; color: #dfe2e8; line-height: 1.55; }
+  .s-card li { position: relative; padding: 5px 0 5px 18px; font-size: 13.5px; color: #dfe2e8; line-height: 1.55; }
   body[data-theme="light"] .s-card li { color: #1f2937; }
   .s-card li::before { content: "›"; position: absolute; left: 0; color: #4a9eff; font-weight: 700; }
 
-  .s-big-metric { font-size: 72px; font-weight: 900; line-height: 1; margin-bottom: 8px; text-align: center; }
+  .s-big-metric { font-size: 64px; font-weight: 900; line-height: 1; margin-bottom: 8px; text-align: center; }
   .s-big-metric.green { color: #22c55e; }
   .s-big-metric.blue { color: #4a9eff; }
-  .s-big-metric.yellow { color: #eab308; }
   .s-big-metric.red { color: #ef4444; }
-  .s-metric-label { font-size: 16px; font-weight: 700; text-align: center; }
+  .s-metric-label { font-size: 14px; font-weight: 700; text-align: center; color: #dfe2e8; }
   body[data-theme="light"] .s-metric-label { color: #111827; }
-  .s-metric-desc { font-size: 13px; color: #8b92a0; margin-top: 6px; text-align: center; }
+  .s-metric-desc { font-size: 12px; color: #8b92a0; margin-top: 6px; text-align: center; }
 
-  .s-phase { background: #161b22; border: 1px solid #1f2633; border-radius: 10px; padding: 22px 16px; border-top: 3px solid #4a9eff; }
+  .s-phase { background: #161b22; border: 1px solid #1f2633; border-radius: 10px; padding: 20px 14px; border-top: 3px solid #4a9eff; }
   body[data-theme="light"] .s-phase { background: #fff; border: 1px solid #e5e7eb; border-top: 3px solid #4a9eff; }
   .s-phase-no { font-size: 11px; color: #4a9eff; font-weight: 800; letter-spacing: 1px; text-align: center; }
-  .s-phase-title { font-size: 17px; font-weight: 800; margin: 6px 0; color: #fff; text-align: center; }
+  .s-phase-title { font-size: 16px; font-weight: 800; margin: 6px 0; color: #fff; text-align: center; }
   body[data-theme="light"] .s-phase-title { color: #111827; }
-  .s-phase-week { font-size: 12px; color: #22c55e; background: #14532d; display: block; width: fit-content; margin: 0 auto 12px; padding: 3px 10px; border-radius: 999px; }
+  .s-phase-week { font-size: 11px; color: #22c55e; background: #14532d; display: block; width: fit-content; margin: 0 auto 10px; padding: 3px 10px; border-radius: 999px; }
   body[data-theme="light"] .s-phase-week { background: #dcfce7; color: #15803d; }
   .s-phase ul { list-style: none; }
-  .s-phase li { font-size: 12.5px; color: #dfe2e8; padding: 3px 0 3px 14px; position: relative; }
+  .s-phase li { font-size: 12px; color: #dfe2e8; padding: 3px 0 3px 14px; position: relative; }
   body[data-theme="light"] .s-phase li { color: #1f2937; }
   .s-phase li::before { content: "✓"; position: absolute; left: 0; color: #22c55e; font-weight: 800; }
 
-  .s-tbl { width: 100%; max-width: 1100px; border-collapse: separate; border-spacing: 0; border: 1px solid #1f2633; border-radius: 10px; overflow: hidden; background: #161b22; text-align: left; }
+  .s-tbl { width: 100%; max-width: var(--slide-w); border-collapse: separate; border-spacing: 0; border: 1px solid #1f2633; border-radius: 10px; overflow: hidden; background: #161b22; text-align: left; }
   body[data-theme="light"] .s-tbl { background: #fff; border-color: #e5e7eb; }
-  .s-tbl th, .s-tbl td { padding: 16px 22px; border-bottom: 1px solid #1f2633; font-size: 15px; }
+  .s-tbl th, .s-tbl td { padding: 12px 18px; border-bottom: 1px solid #1f2633; font-size: 13.5px; }
   body[data-theme="light"] .s-tbl th, body[data-theme="light"] .s-tbl td { border-bottom-color: #e5e7eb; }
-  .s-tbl thead th { background: #0f1419; color: #8b92a0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .s-tbl thead th { background: #0f1419; color: #8b92a0; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
   body[data-theme="light"] .s-tbl thead th { background: #f3f4f6; color: #6b7280; }
-  .s-tbl td:first-child { font-weight: 700; width: 180px; color: #e4e6eb; }
+  .s-tbl td:first-child { font-weight: 700; width: 160px; color: #e4e6eb; }
   body[data-theme="light"] .s-tbl td:first-child { color: #111827; }
   .s-tbl .bef { color: #8b92a0; }
   .s-tbl .aft { color: #4a9eff; font-weight: 600; }
   body[data-theme="light"] .s-tbl .aft { color: #2563eb; }
   .s-tbl tbody tr:last-child td { border-bottom: 0; }
 
-  /* Why-us slides */
-  .s-reason { display: flex; align-items: flex-start; gap: 18px; background: #161b22; border: 1px solid #1f2633; border-left: 4px solid #4a9eff; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; text-align: left; width: 100%; max-width: 1000px; }
+  .s-reason { display: flex; align-items: flex-start; gap: 16px; background: #161b22; border: 1px solid #1f2633; border-left: 4px solid #4a9eff; border-radius: 10px; padding: 18px 22px; margin-bottom: 12px; text-align: left; width: 100%; max-width: var(--slide-w); }
   body[data-theme="light"] .s-reason { background: #f5f9ff; border: 1px solid #dbeafe; border-left: 4px solid #2563eb; }
-  .s-reason-icon { width: 44px; height: 44px; border-radius: 10px; background: #1e3a5f; color: #4a9eff; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .s-reason-icon { width: 40px; height: 40px; border-radius: 10px; background: #1e3a5f; color: #4a9eff; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   body[data-theme="light"] .s-reason-icon { background: #2563eb; color: #fff; }
   .s-reason-body { flex: 1; }
-  .s-reason-title { font-size: 16px; font-weight: 800; color: #4a9eff; margin-bottom: 6px; }
+  .s-reason-title { font-size: 15px; font-weight: 800; color: #4a9eff; margin-bottom: 4px; }
   body[data-theme="light"] .s-reason-title { color: #2563eb; }
-  .s-reason-text { font-size: 14.5px; color: #dfe2e8; line-height: 1.7; }
+  .s-reason-text { font-size: 14px; color: #dfe2e8; line-height: 1.7; }
   body[data-theme="light"] .s-reason-text { color: #1f2937; }
   .s-reason-text .pill { display: inline-block; font-size: 12px; font-weight: 700; color: #4a9eff; background: #1c2838; padding: 2px 10px; border-radius: 999px; margin: 0 3px; }
   body[data-theme="light"] .s-reason-text .pill { background: #dbeafe; color: #2563eb; }
-  .s-reason-metrics { display: flex; gap: 26px; margin-top: 10px; }
-  .s-reason-metric b { font-size: 22px; font-weight: 900; color: #4a9eff; }
+  .s-reason-metrics { display: flex; gap: 26px; margin-top: 8px; }
+  .s-reason-metric b { font-size: 20px; font-weight: 900; color: #4a9eff; }
   body[data-theme="light"] .s-reason-metric b { color: #2563eb; }
   .s-reason-metric span { font-size: 12px; color: #8b92a0; margin-left: 6px; }
 
-  .s-closing { margin-top: 28px; padding: 22px 30px; background: #1c2838; border: 1px solid #2a3f5f; border-radius: 10px; font-size: 17px; font-weight: 800; color: #fff; max-width: 1000px; width: 100%; text-align: center; }
+  .s-closing { margin-top: 24px; padding: 18px 28px; background: #1c2838; border: 1px solid #2a3f5f; border-radius: 10px; font-size: 16px; font-weight: 800; color: #fff; max-width: var(--slide-w); width: 100%; text-align: center; }
   body[data-theme="light"] .s-closing { background: #eff6ff; border-color: #bfdbfe; color: #1e3a8a; }
 
-  .s-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; max-width: 1050px; }
-  .s-dual-box { border-radius: 14px; padding: 30px 28px; text-align: left; }
+  .s-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; width: 100%; max-width: var(--slide-w); }
+  .s-dual-box { border-radius: 14px; padding: 26px 24px; text-align: left; }
   .s-dual-box.left { background: #0f1f3a; border: 1px solid #1e3a5f; }
   body[data-theme="light"] .s-dual-box.left { background: #eff6ff; border: 1px solid #dbeafe; }
   .s-dual-box.right { background: #2d0f14; border: 1px solid #5f1e1e; }
   body[data-theme="light"] .s-dual-box.right { background: #fef2f2; border: 1px solid #fecaca; }
-  .s-dual-head { font-size: 18px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+  .s-dual-head { font-size: 17px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
   .s-dual-box.left .s-dual-head { color: #4a9eff; }
   body[data-theme="light"] .s-dual-box.left .s-dual-head { color: #2563eb; }
   .s-dual-box.right .s-dual-head { color: #ef4444; }
   body[data-theme="light"] .s-dual-box.right .s-dual-head { color: #dc2626; }
-  .s-dual-sub { font-size: 11px; color: #8b92a0; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 18px; }
+  .s-dual-sub { font-size: 11px; color: #8b92a0; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 14px; }
   .s-dual-box ul { list-style: none; }
-  .s-dual-box li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; margin-bottom: 8px; background: rgba(255,255,255,.04); border-radius: 8px; font-size: 14px; color: #dfe2e8; line-height: 1.55; }
+  .s-dual-box li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 13px; margin-bottom: 7px; background: rgba(255,255,255,.04); border-radius: 8px; font-size: 13.5px; color: #dfe2e8; line-height: 1.55; }
   body[data-theme="light"] .s-dual-box li { background: #fff; color: #1f2937; }
   .s-dual-box.left li::before { content: "✓"; color: #4a9eff; font-weight: 900; flex-shrink: 0; }
   .s-dual-box.right li::before { content: "✕"; color: #ef4444; font-weight: 900; flex-shrink: 0; }
+  .challenge-title { font-size: 17px; font-weight: 800; margin-bottom: 14px; color: #e6edf3; text-transform: none; letter-spacing: 0; }
+  body[data-theme="light"] .challenge-title { color: #111827; }
+  .sol-box { padding: 0 !important; overflow: hidden; }
+  .sol-head { display:flex; align-items:center; gap:14px; padding:20px 24px; }
+  .sol-head .sol-icon { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+  .sol-head .sol-title { font-size:22px; font-weight:900; letter-spacing:.5px; line-height:1.1; }
+  .sol-head .sol-sub { font-size:12px; color:#8b92a0; font-weight:700; margin-top:3px; }
+  .sol-body { padding: 6px 24px 22px; }
+  .sol-body ul { list-style:none; margin:0 0 14px; }
+  .sol-body li { display:flex; align-items:flex-start; gap:10px; padding:8px 0; font-size:13.5px; color:#dfe2e8; }
+  .sol-body li::before { content:"✓"; font-weight:900; flex-shrink:0; }
+  .sol-divider { border-top:1px solid #2a3142; margin: 4px 0 14px; }
+  body[data-theme="light"] .sol-divider { border-top-color:#e5e7eb; }
+  .sol-label { font-size:11px; font-weight:800; color:#8b92a0; letter-spacing:1.2px; margin-bottom:10px; }
+  .sol-chip { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.04); border:1px solid #2a3142; border-radius:8px; padding:10px 14px; margin-bottom:8px; font-size:13px; color:#dfe2e8; }
+  body[data-theme="light"] .sol-chip { background:#f8fafc; border-color:#e5e7eb; color:#1f2937; }
+  .sol-chip .tag { display:inline-block; font-size:11px; font-weight:800; padding:3px 10px; border-radius:999px; flex-shrink:0; }
+  .sol-vision .sol-head { background:rgba(74,158,255,.12); }
+  .sol-vision .sol-icon { background:rgba(74,158,255,.22); color:#4a9eff; }
+  .sol-vision .sol-title { color:#4a9eff; }
+  .sol-vision li::before { color:#4a9eff; }
+  .sol-vision .tag { background:rgba(74,158,255,.18); color:#4a9eff; }
+  .sol-insight .sol-head { background:rgba(168,85,247,.12); }
+  .sol-insight .sol-icon { background:rgba(168,85,247,.22); color:#a855f7; }
+  .sol-insight .sol-title { color:#a855f7; }
+  .sol-insight li::before { color:#a855f7; }
+  .sol-insight .tag { background:rgba(168,85,247,.18); color:#a855f7; }
+  body[data-theme="light"] .sol-vision .sol-head { background:#eff6ff; }
+  body[data-theme="light"] .sol-insight .sol-head { background:#f5f3ff; }
+  .cmp-box { padding:0 !important; overflow:hidden; }
+  .cmp-head { padding:26px 24px 20px; text-align:center; border-bottom:1px solid #2a3142; }
+  body[data-theme="light"] .cmp-head { border-bottom-color:#e5e7eb; }
+  .cmp-head .cmp-title { font-size:22px; font-weight:900; letter-spacing:.5px; }
+  .cmp-head .cmp-sub { font-size:13px; color:#8b92a0; font-weight:600; margin-top:6px; }
+  .cmp-body { padding:6px 24px 22px; }
+  .cmp-row { display:grid; grid-template-columns: 80px 1fr; gap:14px; align-items:flex-start; padding:16px 4px; border-bottom:1px solid #2a3142; }
+  body[data-theme="light"] .cmp-row { border-bottom-color:#eef2f7; }
+  .cmp-row:last-child { border-bottom:none; }
+  .cmp-row .cmp-label { font-size:12px; font-weight:800; color:#8b92a0; padding-top:2px; }
+  .cmp-row .cmp-val { font-size:13.5px; color:#dfe2e8; line-height:1.6; }
+  body[data-theme="light"] .cmp-row .cmp-val { color:#1f2937; }
+  .cmp-old .cmp-head { background:rgba(148,163,184,.08); }
+  .cmp-old .cmp-title { color:#e4e6eb; }
+  body[data-theme="light"] .cmp-old .cmp-head { background:#f8fafc; }
+  body[data-theme="light"] .cmp-old .cmp-title { color:#1f2937; }
+  .cmp-new { border-color:#4a9eff !important; }
+  .cmp-new .cmp-head { background:rgba(148,163,184,.08); border-bottom-color:#2a3142; }
+  body[data-theme="light"] .cmp-new .cmp-head { background:#f8fafc; border-bottom-color:#e5e7eb; }
+  .cmp-new .cmp-title { color:#e4e6eb; }
+  body[data-theme="light"] .cmp-new .cmp-title { color:#1f2937; }
+  body[data-theme="light"] .cmp-new { border-color:#4a9eff !important; }
+  .flow-row { position:relative; background:#161b22; border:1px solid #1f2633; border-radius:14px; padding:34px 22px 22px; margin-bottom:18px; width:100%; max-width:var(--slide-w); }
+  body[data-theme="light"] .flow-row { background:#fff; border-color:#e5e7eb; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .flow-row .flow-tag { position:absolute; top:-12px; left:22px; background:#4a9eff; color:#fff; font-size:12px; font-weight:800; padding:5px 14px; border-radius:999px; }
+  .flow-grid { display:grid; grid-template-columns: 1fr 20px 1fr 20px 1fr; align-items:center; gap:0; }
+  .flow-cell { background:#0f1f3a; border:1px solid #1e3a5f; border-radius:10px; padding:16px 18px; min-height:120px; display:flex; flex-direction:column; justify-content:center; }
+  body[data-theme="light"] .flow-cell { background:#eff6ff; border-color:#dbeafe; }
+  .flow-cell.center { align-items:center; text-align:center; }
+  .flow-cell .fc-head { font-size:12.5px; font-weight:800; color:#93c5fd; margin-bottom:10px; }
+  body[data-theme="light"] .flow-cell .fc-head { color:#2563eb; }
+  .flow-cell ul { list-style:none; margin:0; }
+  .flow-cell li { font-size:13px; color:#dfe2e8; padding:3px 0; display:flex; align-items:flex-start; gap:6px; }
+  body[data-theme="light"] .flow-cell li { color:#1f2937; }
+  .flow-cell li::before { content:"✓"; color:#4a9eff; font-weight:800; }
+  .flow-cell .fc-icon { width:44px; height:44px; border-radius:10px; background:rgba(74,158,255,.22); display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:10px; }
+  .flow-cell .fc-title { font-size:14.5px; font-weight:800; color:#fff; line-height:1.4; }
+  body[data-theme="light"] .flow-cell .fc-title { color:#111827; }
+  .flow-cell .fc-sub { font-size:11.5px; color:#8b92a0; margin-top:4px; }
+  .flow-arrow { height:2px; background:#4a9eff; position:relative; opacity:.5; }
+  .flow-arrow::after { content:""; position:absolute; right:-2px; top:-4px; border-left:8px solid #4a9eff; border-top:5px solid transparent; border-bottom:5px solid transparent; }
+  .arch-wrap { width:100%; max-width:var(--slide-w); display:grid; grid-template-columns: 1fr 30px 1fr; gap:0; align-items:stretch; }
+  .arch-box { background:#0f1520; border:1px solid #1f2633; border-radius:14px; padding:22px 20px; position:relative; }
+  body[data-theme="light"] .arch-box { background:#fafbfc; border-color:#e5e7eb; }
+  .arch-title { font-size:13px; font-weight:800; color:#93c5fd; text-align:center; margin-bottom:14px; letter-spacing:.5px; }
+  body[data-theme="light"] .arch-title { color:#2563eb; }
+  .arch-title b { color:#4a9eff; font-weight:900; font-size:15px; }
+  .arch-row { display:grid; grid-template-columns: 1fr 1fr; gap:14px; position:relative; }
+  .arch-sub { background:#161b22; border:1px solid #1f2633; border-radius:10px; padding:14px 12px; position:relative; display:flex; flex-direction:column; }
+  .arch-sub .arch-item { flex:1; display:flex; align-items:center; justify-content:center; }
+  body[data-theme="light"] .arch-sub { background:#fff; border-color:#dbeafe; }
+  .arch-sub-title { font-size:12px; font-weight:800; color:#e4e6eb; text-align:center; padding-bottom:8px; margin-bottom:10px; border-bottom:1px solid #2a3142; }
+  body[data-theme="light"] .arch-sub-title { color:#1f2937; border-bottom-color:#e5e7eb; }
+  .arch-item { background:rgba(74,158,255,.08); border:1px solid rgba(74,158,255,.25); border-radius:8px; padding:9px 10px; font-size:11.5px; color:#dfe2e8; text-align:center; margin-bottom:7px; line-height:1.4; white-space:nowrap; }
+  body[data-theme="light"] .arch-item { background:#eff6ff; color:#1f2937; }
+  .arch-num { position:absolute; width:22px; height:22px; border-radius:999px; background:#10b981; color:#fff; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; z-index:2; }
+  .arch-left-col { display:flex; flex-direction:column; gap:12px; justify-content:center; }
+  .arch-pill { background:#161b22; border:1px solid #1f2633; border-radius:10px; padding:12px 18px; text-align:center; font-size:13px; font-weight:700; color:#dfe2e8; }
+  body[data-theme="light"] .arch-pill { background:#fff; border-color:#e5e7eb; color:#1f2937; }
+  .arch-connector { display:flex; align-items:center; justify-content:center; position:relative; }
+  .arch-connector::before { content:""; position:absolute; left:0; right:0; top:50%; height:2px; background:#4a9eff; opacity:.4; }
+  .arch-connector .ac-arrow { width:0;height:0;border-left:8px solid #4a9eff;border-top:6px solid transparent;border-bottom:6px solid transparent; position:relative; z-index:2; }
+  .arch-legend { width:100%; max-width:var(--slide-w); margin-top:20px; }
+  .arch-legend .leg-item { display:flex; align-items:flex-start; gap:12px; margin-bottom:10px; font-size:13.5px; color:#dfe2e8; }
+  body[data-theme="light"] .arch-legend .leg-item { color:#1f2937; }
+  .arch-legend .leg-num { width:22px; height:22px; border-radius:999px; background:#10b981; color:#fff; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  .arch-inner { background:#1a2130; border:1px solid #1f2633; border-radius:12px; padding:20px 18px; position:relative; z-index:1; }
+  body[data-theme="light"] .arch-inner { background:#fff; border-color:#e5e7eb; }
+  .tree-connector { position: relative; width: 100%; max-width: var(--slide-w); height: 40px; margin: 6px 0 0; }
+  .tree-connector .tc-v-up { position:absolute; left:50%; top:0; width:2px; height:14px; background:#4a9eff; transform:translateX(-50%); }
+  .tree-connector .tc-h { position:absolute; left:16.67%; right:16.67%; top:14px; height:2px; background:#4a9eff; }
+  .tree-connector .tc-v { position:absolute; top:14px; width:2px; height:26px; background:#4a9eff; }
+  .tree-connector .v1 { left:16.67%; }
+  .tree-connector .v2 { left:50%; transform:translateX(-50%); }
+  .tree-connector .v3 { right:16.67%; }
+  body[data-theme="light"] .tree-connector .tc-v-up,
+  body[data-theme="light"] .tree-connector .tc-h,
+  body[data-theme="light"] .tree-connector .tc-v { background:#93c5fd; }
+
+  .s-ba { display:grid; grid-template-columns: 80px 1fr; gap: 14px; width:100%; max-width:var(--slide-w); align-items:center; margin-bottom:14px; }
+  .s-ba-label { font-size:13px; font-weight:800; color:#8b92a0; text-align:center; padding:10px; border-radius:8px; background:#161b22; border:1px solid #1f2633;}
+  body[data-theme="light"] .s-ba-label { background:#f3f4f6; border-color:#e5e7eb; color:#6b7280;}
+  .s-ba-flow { display:flex; align-items:center; gap:10px; background:#161b22; border:1px solid #1f2633; border-radius:10px; padding:14px; }
+  body[data-theme="light"] .s-ba-flow { background:#fff; border-color:#e5e7eb;}
+  .s-ba-flow.after { border-color:#1e3a5f; background:#0f1f3a;}
+  body[data-theme="light"] .s-ba-flow.after { background:#eff6ff; border-color:#dbeafe;}
+  .s-step { flex:1; text-align:center; font-size:12.5px; color:#dfe2e8; padding:10px 6px; border-radius:8px; background:rgba(255,255,255,.04);}
+  body[data-theme="light"] .s-step { background:#f9fafb; color:#1f2937;}
+  .s-step.hi { background:#1c2838; color:#4a9eff; font-weight:700;}
+  body[data-theme="light"] .s-step.hi { background:#dbeafe; color:#2563eb;}
+  .s-step.bad { background:#2d0f14; color:#ef4444;}
+  body[data-theme="light"] .s-step.bad { background:#fef2f2; color:#dc2626;}
+  .s-arrow { color:#8b92a0; font-weight:900;}
+  .proc-step { position:relative; flex:1; display:flex; flex-direction:column; align-items:center; }
+  .proc-step { justify-content:flex-start; }
+  .proc-step .ps-box { width:100%; background:#161b22; border:1.5px solid #2a3142; border-radius:12px; padding:18px 10px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:106px; flex:1; }
+  body[data-theme="light"] .proc-step .ps-box { background:#fff; border-color:#e5e7eb; }
+  .proc-step .ps-ico { font-size:24px; margin-bottom:6px; }
+  .proc-step .ps-title { font-size:13px; font-weight:800; color:#e4e6eb; line-height:1.35; }
+  body[data-theme="light"] .proc-step .ps-title { color:#1f2937; }
+  .proc-step .ps-sub { font-size:11px; color:#8b92a0; margin-top:6px; min-height:14px; }
+  .proc-step.bad .ps-box { border-color:#ef4444; background:rgba(239,68,68,.12); }
+  .proc-step.bad .ps-title { color:#ef4444; }
+  .proc-step.hi .ps-box { border-color:#4a9eff; background:rgba(74,158,255,.14); position:relative; }
+  .proc-step.hi .ps-title { color:#4a9eff; }
+  .proc-step .ps-flag { position:absolute; top:-14px; background:#ef4444; color:#fff; font-size:10.5px; font-weight:800; padding:3px 10px; border-radius:999px; white-space:nowrap; z-index:2; }
+  .proc-step .ps-tag { position:absolute; top:-12px; background:#1e3a5f; color:#fff; font-size:10px; font-weight:800; padding:3px 10px; border-radius:6px; letter-spacing:.5px; z-index:2; }
+  body[data-theme="light"] .proc-step .ps-tag { background:#2563eb; }
+  .proc-row { display:flex; align-items:stretch; gap:12px; width:100%; padding:22px 20px; border-radius:14px; border:1.5px solid #1f2633; background:#0f1520; }
+  body[data-theme="light"] .proc-row { background:#f8fafc; border-color:#e5e7eb; }
+  .proc-row.after { background:rgba(74,158,255,.06); border-color:rgba(74,158,255,.35); }
+  body[data-theme="light"] .proc-row.after { background:#eff6ff; border-color:#bfdbfe; }
+  .proc-row .proc-lbl { width:90px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; letter-spacing:2px; color:#8b92a0; }
+  .proc-row.after .proc-lbl { color:#4a9eff; }
+  .proc-arrow { display:flex; align-items:center; justify-content:center; color:#8b92a0; font-size:18px; font-weight:900; flex-shrink:0; width:18px; }
+  .proc-divider { text-align:center; margin:14px 0; font-size:12px; font-weight:800; color:#4a9eff; }
+  .proc-divider span { display:inline-block; padding:6px 18px; background:rgba(74,158,255,.1); border:1px solid rgba(74,158,255,.3); border-radius:999px; }
+  .proc-checks { display:grid; grid-template-columns: repeat(3,1fr); gap:12px; width:100%; margin-top:16px; }
+  .proc-check { background:#161b22; border:1px solid #1f2633; border-radius:10px; padding:14px 16px; display:flex; gap:10px; align-items:flex-start; }
+  body[data-theme="light"] .proc-check { background:#fff; border-color:#e5e7eb; }
+  .proc-check .pc-icon { width:22px; height:22px; border-radius:999px; background:rgba(74,158,255,.2); color:#4a9eff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:900; flex-shrink:0; }
+  .proc-check .pc-title { font-size:13px; font-weight:800; color:#e4e6eb; margin-bottom:3px; }
+  body[data-theme="light"] .proc-check .pc-title { color:#1f2937; }
+  .proc-check .pc-sub { font-size:11.5px; color:#8b92a0; line-height:1.5; }
+  .proc-closing { width:100%; margin-top:14px; padding:18px 24px; background:#1e3a5f; border-radius:10px; text-align:center; font-size:16px; font-weight:900; color:#fff; letter-spacing:.3px; }
+  body[data-theme="light"] .proc-closing { background:#2563eb; }
+  .res-wrap { width:100%; max-width:var(--slide-w); }
+  .res-sub { font-size:12px; color:#8b92a0; margin-bottom:10px; }
+  .res-card { background:#161b22; border:1px solid #1f2633; border-radius:14px; padding:22px 24px; }
+  body[data-theme="light"] .res-card { background:#fff; border-color:#e5e7eb; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .res-grid { display:grid; grid-template-columns: 1.5fr 1fr; gap:18px; }
+  .res-chart-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .res-chart-title { font-size:15px; font-weight:800; color:#e4e6eb; }
+  body[data-theme="light"] .res-chart-title { color:#1f2937; }
+  .res-chart-legend { display:flex; gap:14px; font-size:11.5px; color:#8b92a0; }
+  .res-chart-legend .dot { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+  .res-grid { align-items:stretch; }
+  .res-grid > div { display:flex; flex-direction:column; }
+  .res-grid > div:last-child { justify-content:center; gap:14px; }
+  .res-grid > div:last-child .res-metric:last-child { margin-bottom:0; }
+  .res-chart { position:relative; flex:1; min-height:360px; padding:10px 10px 30px 40px; border-left:1px solid #2a3142; border-bottom:1px solid #2a3142; }
+  body[data-theme="light"] .res-chart { border-color:#e5e7eb; }
+  .res-chart .yaxis { position:absolute; left:-4px; top:0; bottom:30px; width:40px; }
+  .res-chart .yaxis div { position:absolute; right:6px; font-size:10.5px; color:#8b92a0; transform:translateY(-50%); }
+  .res-chart .gridline { position:absolute; left:40px; right:10px; border-top:1px dashed #2a3142; }
+  body[data-theme="light"] .res-chart .gridline { border-top-color:#eef2f7; }
+  .res-bars { display:flex; justify-content:space-around; align-items:flex-end; height:100%; position:relative; gap:60px; }
+  .res-group { display:flex; align-items:flex-end; gap:14px; height:100%; position:relative; }
+  .res-bar { width:52px; height:100%; position:relative; }
+  .res-bar .rb-val { position:absolute; left:50%; top:-22px; transform:translateX(-50%); font-size:13px; font-weight:800; color:#e4e6eb; white-space:nowrap; }
+  body[data-theme="light"] .res-bar .rb-val { color:#1f2937; }
+  .res-bar .rb-fill { position:absolute; left:0; right:0; bottom:0; border-radius:4px 4px 0 0; }
+  .res-bar.before .rb-fill { background:#94a3b8; }
+  .res-bar.after .rb-fill { background:#1e3a8a; }
+  .res-group-label { position:absolute; bottom:-26px; left:0; right:0; text-align:center; font-size:13px; font-weight:800; color:#e4e6eb; }
+  body[data-theme="light"] .res-group-label { color:#1f2937; }
+  .res-metric { background:#161b22; border:1px solid #1f2633; border-left:4px solid #4a9eff; border-radius:10px; padding:18px 22px; margin-bottom:14px; }
+  body[data-theme="light"] .res-metric { background:#fff; border-color:#e5e7eb; border-left-color:#1e3a8a; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .rm-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+  .rm-label { font-size:13px; color:#8b92a0; font-weight:700; }
+  body[data-theme="light"] .rm-label { color:#4b5563; }
+  .rm-delta { font-size:12px; font-weight:800; color:#4a9eff; background:rgba(74,158,255,.15); padding:5px 12px; border-radius:999px; }
+  body[data-theme="light"] .rm-delta { background:#dbeafe; color:#2563eb; }
+  .rm-big { font-size:36px; font-weight:900; color:#fff; letter-spacing:-.5px; }
+  body[data-theme="light"] .rm-big { color:#111827; }
+  .rm-sub { margin-top:12px; padding-top:12px; border-top:1px solid #2a3142; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#8b92a0; }
+  body[data-theme="light"] .rm-sub { border-top-color:#eef2f7; color:#4b5563; }
+  .rm-sub b { color:#ef4444; font-weight:800; }
+  body[data-theme="light"] .rm-sub b { color:#dc2626; }
+  .rm-list { margin-top:12px; padding:10px 14px; background:rgba(74,158,255,.08); border:1px solid rgba(74,158,255,.25); border-radius:8px; }
+  body[data-theme="light"] .rm-list { background:#eff6ff; border-color:#dbeafe; }
+  .rm-list div { font-size:12px; color:#dfe2e8; padding:2px 0; }
+  body[data-theme="light"] .rm-list div { color:#1f2937; }
+  .res-closing { margin-top:16px; padding:18px 24px; background:rgba(74,158,255,.08); border:1px solid rgba(74,158,255,.25); border-radius:10px; text-align:center; font-size:14px; color:#dfe2e8; line-height:1.7; }
+  body[data-theme="light"] .res-closing { background:#eff6ff; border-color:#dbeafe; color:#1f2937; }
+  .role-card { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:22px 26px; display:flex; gap:18px; align-items:flex-start; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  .role-card.dark-fix, body:not([data-theme="light"]) .role-card { background:#161b22; border-color:#1f2633; }
+  .role-card .rc-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+  .role-card .rc-tag { display:inline-block; font-size:11px; font-weight:800; padding:4px 12px; border-radius:999px; margin-bottom:8px; }
+  .role-card .rc-title { font-size:16px; font-weight:900; color:#111827; margin-bottom:6px; }
+  .role-card.dark-fix, body:not([data-theme="light"]) .role-card .rc-title { color:#fff; }
+  .role-card .rc-sub { font-size:12.5px; color:#6b7280; line-height:1.55; }
+  .role-card.dark-fix, body:not([data-theme="light"]) .role-card .rc-sub { color:#8b92a0; }
+  .pos-card { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:26px 28px; box-shadow:0 1px 3px rgba(0,0,0,.04); display:flex; flex-direction:column; }
+  body:not([data-theme="light"]) .pos-card { background:#161b22; border-color:#1f2633; }
+  .pos-title { font-size:20px; font-weight:900; color:#111827; }
+  body:not([data-theme="light"]) .pos-title { color:#fff; }
+  .pos-divider { height:1px; background:#e5e7eb; margin:14px 0 16px; }
+  body:not([data-theme="light"]) .pos-divider { background:#2a3142; }
+  .pos-img { background:#f8fafc; border-radius:10px; padding:14px; margin-bottom:16px; display:flex; align-items:center; justify-content:center; min-height:200px; }
+  body:not([data-theme="light"]) .pos-img { background:#0f1520; }
+  .pos-img img { max-width:100%; max-height:220px; border-radius:6px; }
+  .pos-img-ph { text-align:center; font-size:13px; color:#94a3b8; font-weight:700; line-height:1.8; }
+  .pos-img-ph small { color:#cbd5e1; font-weight:500; font-size:11px; }
+  .pos-list { list-style:none; margin:0; }
+  .pos-list li { font-size:13.5px; color:#4b5563; padding:6px 0; line-height:1.55; }
+  body:not([data-theme="light"]) .pos-list li { color:#dfe2e8; }
+  .fundus-step { flex:1; background:linear-gradient(180deg,#eff6ff 0%,#dbeafe 100%); border:1.5px solid #bfdbfe; border-radius:14px; padding:32px 22px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  body:not([data-theme="light"]) .fundus-step { background:linear-gradient(180deg,rgba(74,158,255,.12) 0%,rgba(74,158,255,.06) 100%); border-color:rgba(74,158,255,.3); }
+  .fundus-step .fs-icon { width:46px; height:46px; border-radius:10px; background:#fff; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:18px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  body:not([data-theme="light"]) .fundus-step .fs-icon { background:rgba(255,255,255,.08); }
+  .fundus-step .fs-title { font-size:20px; font-weight:900; color:#1e3a8a; margin-bottom:10px; letter-spacing:.3px; }
+  body:not([data-theme="light"]) .fundus-step .fs-title { color:#93c5fd; }
+  .fundus-step .fs-sub { font-size:12.5px; color:#475569; line-height:1.6; font-weight:600; }
+  body:not([data-theme="light"]) .fundus-step .fs-sub { color:#cbd5e1; }
+  .fundus-arrow { display:flex; align-items:center; justify-content:center; font-size:36px; color:#94a3b8; font-weight:300; flex-shrink:0; }
+  .feat-mini { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 20px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+  body:not([data-theme="light"]) .feat-mini { background:#161b22; border-color:#1f2633; }
+  .feat-mini .fm-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .feat-mini .fm-icon { width:28px; height:28px; border-radius:8px; background:#eff6ff; display:inline-flex; align-items:center; justify-content:center; font-size:14px; }
+  body:not([data-theme="light"]) .feat-mini .fm-icon { background:rgba(74,158,255,.15); }
+  .feat-mini .fm-title { font-size:15px; font-weight:900; color:#111827; }
+  body:not([data-theme="light"]) .feat-mini .fm-title { color:#fff; }
+  .feat-mini .fm-sub { font-size:12px; color:#6b7280; line-height:1.55; }
+  body:not([data-theme="light"]) .feat-mini .fm-sub { color:#8b92a0; }
+  .feat-mini .fm-sub b { color:#2563eb; font-weight:800; }
+  body:not([data-theme="light"]) .feat-mini .fm-sub b { color:#4a9eff; }
+  .phase-row { display:grid; grid-template-columns: 220px 1fr; gap:0; background:#eff6ff; border:1px solid #dbeafe; border-radius:14px; overflow:hidden; }
+  body:not([data-theme="light"]) .phase-row { background:rgba(74,158,255,.08); border-color:rgba(74,158,255,.25); }
+  .phase-left { padding:24px 26px; display:flex; flex-direction:column; justify-content:center; gap:6px; }
+  .pl-label { font-size:12px; font-weight:800; color:#6b7280; letter-spacing:1.5px; }
+  body:not([data-theme="light"]) .pl-label { color:#8b92a0; }
+  .pl-date { font-size:22px; font-weight:900; color:#111827; }
+  body:not([data-theme="light"]) .pl-date { color:#fff; }
+  .pl-chip { display:inline-block; margin-top:10px; background:#fff; border:1px solid #dbeafe; color:#2563eb; font-size:12px; font-weight:800; padding:7px 14px; border-radius:999px; width:fit-content; }
+  body:not([data-theme="light"]) .pl-chip { background:#161b22; border-color:rgba(74,158,255,.3); color:#4a9eff; }
+  .phase-right { background:#fff; padding:22px 28px; display:flex; flex-direction:column; gap:10px; text-align:center; align-items:center; }
+  .phase-right .pr-chips, .phase-right .pr-tags { justify-content:center; }
+  body:not([data-theme="light"]) .phase-right { background:#161b22; }
+  .pr-title { font-size:18px; font-weight:900; color:#111827; }
+  body:not([data-theme="light"]) .pr-title { color:#fff; }
+  .pr-sub { font-size:13px; color:#4b5563; margin-bottom:4px; }
+  body:not([data-theme="light"]) .pr-sub { color:#8b92a0; }
+  .pr-chips { display:flex; gap:8px; flex-wrap:wrap; }
+  .pr-chip { font-size:12px; font-weight:700; padding:6px 14px; border-radius:999px; background:#f1f5f9; color:#475569; border:1px solid #e2e8f0; }
+  body:not([data-theme="light"]) .pr-chip { background:#1f2633; color:#8b92a0; border-color:#2a3142; }
+  .pr-chip.on { background:#dbeafe; color:#2563eb; border-color:#bfdbfe; }
+  body:not([data-theme="light"]) .pr-chip.on { background:rgba(74,158,255,.15); color:#4a9eff; border-color:rgba(74,158,255,.3); }
+  .phase-next { text-align:center; margin:14px 0; font-size:12px; font-weight:800; color:#94a3b8; letter-spacing:1px; }
+  .phase-next span { color:#64748b; }
+  body:not([data-theme="light"]) .phase-next { color:#8b92a0; }
+  .phase-feats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:6px 0 8px; }
+  .pf { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px 10px; text-align:center; }
+  body:not([data-theme="light"]) .pf { background:#1f2633; border-color:#2a3142; }
+  .pf-t { font-size:12.5px; font-weight:800; color:#111827; margin-bottom:4px; }
+  body:not([data-theme="light"]) .pf-t { color:#fff; }
+  .pf-s { font-size:11px; color:#6b7280; line-height:1.5; }
+  body:not([data-theme="light"]) .pf-s { color:#8b92a0; }
+  .pr-meta { font-size:11.5px; font-weight:700; color:#64748b; margin-top:6px; }
+  body:not([data-theme="light"]) .pr-meta { color:#8b92a0; }
+  .pr-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; }
+  .pt { font-size:11.5px; font-weight:800; padding:7px 14px; border-radius:8px; background:#f1f5f9; color:#475569; border:1px solid #e2e8f0; }
+  body:not([data-theme="light"]) .pt { background:#1f2633; color:#8b92a0; border-color:#2a3142; }
+  .pt.primary { background:#dbeafe; color:#1e3a8a; border-color:#bfdbfe; }
+  body:not([data-theme="light"]) .pt.primary { background:rgba(74,158,255,.15); color:#4a9eff; border-color:rgba(74,158,255,.3); }
+  .sum-card { background:#fff; border:1px solid #e5e7eb; border-left:4px solid #4a9eff; border-radius:12px; padding:24px 28px; display:flex; gap:20px; align-items:center; justify-content:center; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  body:not([data-theme="light"]) .sum-card { background:#161b22; border-color:#1f2633; }
+  .sum-card .sc-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+  .sum-card .sc-tag { font-size:12px; font-weight:800; letter-spacing:.3px; margin-bottom:6px; }
+  .sum-card .sc-title { font-size:18px; font-weight:900; color:#111827; margin-bottom:8px; }
+  body:not([data-theme="light"]) .sum-card .sc-title { color:#fff; }
+  .sum-card .sc-sub { font-size:13px; color:#6b7280; line-height:1.55; }
+  body:not([data-theme="light"]) .sum-card .sc-sub { color:#8b92a0; }
+  .int-card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:22px 18px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  body:not([data-theme="light"]) .int-card { background:#161b22; border-color:#1f2633; }
+  .int-card .ic-icon { width:52px; height:52px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:12px; }
+  .int-card .ic-title { font-size:15px; font-weight:900; color:#111827; margin-bottom:4px; }
+  body:not([data-theme="light"]) .int-card .ic-title { color:#fff; }
+  .int-card .ic-sub { font-size:11.5px; color:#6b7280; }
+  body:not([data-theme="light"]) .int-card .ic-sub { color:#8b92a0; }
+  .int-tbl { width:100%; border-collapse:collapse; font-size:13px; }
+  .int-tbl th, .int-tbl td { text-align:left; padding:12px 14px; border-bottom:1px solid #eef2f7; color:#1f2937; }
+  body:not([data-theme="light"]) .int-tbl th, body:not([data-theme="light"]) .int-tbl td { color:#dfe2e8; border-bottom-color:#2a3142; }
+  .int-tbl th { font-size:12px; font-weight:800; color:#6b7280; background:transparent; }
+  body:not([data-theme="light"]) .int-tbl th { color:#8b92a0; }
+  .int-tbl tr:last-child td { border-bottom:none; }
+  /* theme-safe utilities */
+  .cta-banner { width:100%; max-width:var(--slide-w); background:rgba(74,158,255,.12); border:1px solid rgba(74,158,255,.3); border-left:5px solid #4a9eff; border-radius:10px; padding:20px 26px; margin-bottom:20px; display:flex; align-items:center; gap:14px; }
+  body[data-theme="light"] .cta-banner { background:#eef2ff; border-color:#dbeafe; border-left-color:#4338ca; }
+  .cta-banner .cb-check { width:32px; height:32px; border-radius:999px; background:#4a9eff; color:#fff; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  body[data-theme="light"] .cta-banner .cb-check { background:#4338ca; }
+  .cta-banner .cb-text { font-size:17px; font-weight:800; color:#e6edf3; }
+  body[data-theme="light"] .cta-banner .cb-text { color:#1e293b; }
+  .hero-card { background:#161b22; border:1px solid #1f2633; border-top:5px solid #4a9eff; border-radius:14px; padding:52px 30px 46px; text-align:center; }
+  body[data-theme="light"] .hero-card { background:#fff; border-color:#e5e7eb; border-top-color:#1e3a8a; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  .hero-card .hc-icon { width:78px; height:78px; border-radius:999px; background:rgba(74,158,255,.15); color:#4a9eff; display:flex; align-items:center; justify-content:center; font-size:34px; margin:0 auto 26px; }
+  body[data-theme="light"] .hero-card .hc-icon { background:#eff6ff; color:#1e3a8a; }
+  .hero-card .hc-title { font-size:30px; font-weight:900; color:#4a9eff; letter-spacing:.5px; margin-bottom:12px; }
+  body[data-theme="light"] .hero-card .hc-title { color:#1e3a8a; }
+  .hero-card .hc-sub { font-size:15px; color:#8b92a0; font-weight:600; }
+  body[data-theme="light"] .hero-card .hc-sub { color:#6b7280; }
+  .hero-plus { width:54px; height:54px; border-radius:999px; background:#1f2633; border:1px solid #2a3142; color:#8b92a0; display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:900; flex-shrink:0; }
+  body[data-theme="light"] .hero-plus { background:#f1f5f9; border-color:#e5e7eb; color:#64748b; }
+  .surface-card { background:#161b22; border:1px solid #1f2633; border-radius:12px; padding:20px 24px; }
+  body[data-theme="light"] .surface-card { background:#fff; border-color:#e5e7eb; }
+  .surface-heading { font-size:14px; font-weight:800; color:#e6edf3; margin-bottom:14px; }
+  body[data-theme="light"] .surface-heading { color:#111827; }
+
+  .s-quote { background:#161b22; border:1px solid #1f2633; border-radius:12px; padding:20px 22px; text-align:left;}
+  body[data-theme="light"] .s-quote { background:#fff; border-color:#e5e7eb;}
+  .s-quote::before { content:"“"; font-size:42px; color:#4a9eff; line-height:.3; display:block; margin-bottom:10px;}
+  .s-quote-text { font-size:13.5px; color:#dfe2e8; line-height:1.7; margin-bottom:12px;}
+  body[data-theme="light"] .s-quote-text { color:#1f2937;}
+  .s-quote-who { font-size:12px; color:#8b92a0; font-weight:700;}
 
   /* Controls */
-  .nav-bar { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: #161b22; border: 1px solid #2a3142; border-radius: 999px; padding: 10px 16px; display: flex; align-items: center; gap: 10px; z-index: 200; box-shadow: 0 4px 20px rgba(0,0,0,.3); }
+  .nav-bar { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); background: #161b22; border: 1px solid #2a3142; border-radius: 999px; padding: 10px 16px; display: flex; align-items: center; gap: 10px; z-index: 200; box-shadow: 0 4px 20px rgba(0,0,0,.3); }
   body[data-theme="light"] .nav-bar { background: #fff; border-color: #e5e7eb; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
   .nav-btn { background: transparent; border: 1px solid #2a3142; color: #dfe2e8; padding: 8px 14px; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
   body[data-theme="light"] .nav-btn { color: #1f2937; border-color: #e5e7eb; }
   .nav-btn:hover { background: #1c2838; color: #4a9eff; border-color: #4a9eff; }
   body[data-theme="light"] .nav-btn:hover { background: #eff6ff; color: #2563eb; border-color: #2563eb; }
   .nav-btn.icon-only { padding: 8px 12px; }
-  .nav-counter { font-size: 13px; font-weight: 700; color: #8b92a0; padding: 0 6px; min-width: 56px; text-align: center; }
+  .nav-counter { font-size: 13px; font-weight: 700; color: #8b92a0; padding: 0 6px; min-width: 62px; text-align: center; }
   body[data-theme="light"] .nav-counter { color: #6b7280; }
 
-  .slide-indicator { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background: rgba(22,27,34,.8); backdrop-filter: blur(8px); border: 1px solid #2a3142; color: #8b92a0; padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 1px; z-index: 200; }
+  .slide-indicator { position: fixed; top: 22px; left: 22px; background: rgba(22,27,34,.8); backdrop-filter: blur(8px); border: 1px solid #2a3142; color: #8b92a0; padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 1px; z-index: 200; }
   body[data-theme="light"] .slide-indicator { background: rgba(255,255,255,.85); border-color: #e5e7eb; color: #6b7280; }
-
-  .slide-home { position: fixed; top: 22px; left: 24px; z-index: 200; background: rgba(22,27,34,.85); backdrop-filter: blur(8px); border: 1px solid #2a3142; color: #dfe2e8; padding: 9px 18px; border-radius: 999px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .15s; }
-  body[data-theme="light"] .slide-home { background: rgba(255,255,255,.9); border-color: #e5e7eb; color: #1f2937; }
-  .slide-home:hover { color: #4a9eff; border-color: #4a9eff; background: rgba(28,40,56,.9); }
-  body[data-theme="light"] .slide-home:hover { color: #2563eb; border-color: #2563eb; background: #eff6ff; }
 </style>
 </head>
 <body class="slides-mode">
 <script>window.CURRENT_PAGE = 'slides';</script>
 <script src="../assets/layout.js" data-base="../"></script>
 
-<div class="slide-indicator">청주김안과 · TECHNICAL REPORT</div>
+<div class="slide-indicator">LOOCUS VISION / 차세대 CRM 도입 제안</div>
 
 <div class="stage">
 
   <!-- 1: Cover -->
   <section class="slide active">
-    <div class="s-badge">TECHNICAL ADVISORY REPORT</div>
-    <div class="s-title">청주김안과<br>차세대 CRM·EMR 도입 제안</div>
-    <div class="s-subtitle">환자 여정 통합 / 경영 가시화 / AI 전환 기반</div>
-    <div class="s-meta">
-      EyeChartPro + LOOCUS VISION + CTI<br>
-      <b>작성일</b>: 2026-04-09 &nbsp;|&nbsp; <b>대상</b>: 청주김안과
-    </div>
+    <div class="s-badge">PROPOSAL</div>
+    <div class="s-title">LOOCUS VISION<br>차세대 CRM 도입 제안</div>
+    <div class="s-subtitle">비쥬웍스 · 2026. 4. 10</div>
+    <div class="s-meta"><b>대상</b> : 청주김안과 &nbsp;|&nbsp; Strictly private and confidential</div>
   </section>
 
   <!-- 2: About Visuworks -->
   <section class="slide">
     <div class="s-badge">ABOUT VISUWORKS</div>
     <div class="s-h2">비쥬웍스 소개</div>
-    <div class="s-lead">병원이 <b>감이 아니라 데이터로 판단하고 성장</b>하게 만드는 팀입니다</div>
-
+    <div class="s-lead">병원이 <b>감이 아니라 데이터로 판단</b>하고 성장하게 만드는 팀입니다</div>
     <div class="s-reason">
       <div class="s-reason-icon">🏥</div>
       <div class="s-reason-body">
         <div class="s-reason-title">현장 경험</div>
-        <div class="s-reason-text">
-          비앤빛안과와 10년을 함께하며, <b>상담 구조 설계 · AI 솔루션 개발 · 성과 측정 체계</b>까지 병원 운영 전반을 만들어 왔습니다.
-        </div>
+        <div class="s-reason-text">비앤빛안과와 10년 이상 함께하며, 상담 구조 설계부터 AI 솔루션 개발, 성과 측정 체계까지 병원 운영 전반을 만들어 왔습니다.</div>
       </div>
     </div>
-
     <div class="s-reason">
       <div class="s-reason-icon">📈</div>
       <div class="s-reason-body">
         <div class="s-reason-title">검증된 성과</div>
-        <div class="s-reason-text">
-          수술 전환율 <span class="pill">+12.1%p</span>, 프리미엄 수술 비중 <span class="pill">+4.5%p</span>. <b>비앤빛 실사용 결과</b>입니다.
-        </div>
+        <div class="s-reason-text">수술 전환율 <span class="pill">+12.1%p</span>, 프리미엄 수술 비중 <span class="pill">+4.5%p</span> — 비앤빛 실사용 결과입니다.</div>
         <div class="s-reason-metrics">
           <div class="s-reason-metric"><b>+12.1%p</b><span>수술 전환율</span></div>
-          <div class="s-reason-metric"><b>+4.5%p</b><span>프리미엄 수술 비중</span></div>
+          <div class="s-reason-metric"><b>+4.5%p</b><span>프리미엄 수술</span></div>
         </div>
       </div>
     </div>
-
     <div class="s-reason">
       <div class="s-reason-icon">🔄</div>
       <div class="s-reason-body">
         <div class="s-reason-title">매출로 연결</div>
-        <div class="s-reason-text">
-          검사부터 수술까지 <b>끊기지 않는 데이터 흐름</b>을 만들어, 전환율과 객단가를 올립니다.
-        </div>
+        <div class="s-reason-text">검사부터 수술까지 끊기지 않는 데이터 흐름을 만들어, 전환율과 객단가를 올립니다.</div>
       </div>
     </div>
-
     <div class="s-closing">효율화와 매출 극대화를 동시에 — 그것이 비쥬웍스가 하는 일입니다</div>
   </section>
 
-  <!-- 3: Why now -->
+  <!-- 3: Why LOOCUS -->
   <section class="slide">
     <div class="s-badge">WHY NOW</div>
-    <div class="s-h2">왜 지금, 차세대 플랫폼인가</div>
+    <div class="s-h2">왜 지금, LOOCUS가 필요한가</div>
     <div class="s-lead">환자는 <b>설득이 아니라 납득</b>으로 결정합니다</div>
-
     <div class="s-dual">
       <div class="s-dual-box left">
         <div class="s-dual-head">👤 환자가 바뀌었습니다</div>
         <div class="s-dual-sub">Patient Changes</div>
         <ul>
-          <li>정보는 넘치지만, 복잡한 설명을 오래 듣고 움직이지 않습니다</li>
+          <li>정보는 넘치지만, 복잡한 설명을 오래 듣지 않습니다</li>
           <li>빠르고 분명한 판단을 원합니다</li>
           <li>납득될 때 선택합니다</li>
         </ul>
       </div>
       <div class="s-dual-box right">
-        <div class="s-dual-head">🏥 병원은 아직 준비되지 않았습니다</div>
+        <div class="s-dual-head">🏥 병원은 아직 멈춰있습니다</div>
         <div class="s-dual-sub">Hospital Status</div>
         <ul>
-          <li>여전히 경험과 직관 중심으로 운영되는 구간이 많습니다</li>
-          <li>마케팅 · 콜센터 · CRM/EMR 데이터가 끊겨 있습니다</li>
+          <li>경험과 직관 중심으로 운영되는 구간이 많습니다</li>
+          <li>마케팅·콜센터·CRM/EMR 데이터가 끊겨 있습니다</li>
           <li>무엇이 매출로 이어지는지 설명할 수 없습니다</li>
         </ul>
       </div>
     </div>
-
-    <div class="s-closing">이 간극을 메우는 것이 비쥬웍스가 하는 일이고, 비앤빛안과에서 먼저 검증한 이유입니다</div>
+    <div class="s-closing">이 간극을 메우는 것이 비쥬웍스가 하는 일이고, 비앤빛에서 먼저 검증한 이유입니다</div>
   </section>
 
-  <!-- 4: AS-IS -->
+  <!-- 4: Agenda -->
   <section class="slide">
-    <div class="s-badge">AS-IS</div>
-    <div class="s-h2">현재 운영 환경의 한계</div>
-    <div class="s-lead">3개 시스템 분산 · 종이차트 병행 · 통합 분석 불가</div>
+    <div class="s-badge">OPENING</div>
+    <div class="s-h2">Agenda</div>
+    <div class="s-lead">오늘 말씀드릴 네 가지</div>
+    <div class="s-agenda">
+      <div class="s-agenda-card">
+        <div class="s-agenda-head"><div class="s-agenda-num">1</div><div class="s-agenda-icon">📈</div></div>
+        <div class="s-agenda-title">시장 환경과<br>프리미엄 전환의 과제</div>
+        <div class="s-agenda-sub">❓ 시장 변화와 3가지 핵심 과제</div>
+      </div>
+      <div class="s-agenda-card">
+        <div class="s-agenda-head"><div class="s-agenda-num">2</div><div class="s-agenda-icon">🖥</div></div>
+        <div class="s-agenda-title">LOOCUS<br>솔루션 소개</div>
+        <div class="s-agenda-sub">💡 LOOCUS VISION / INSIGHT</div>
+      </div>
+      <div class="s-agenda-card">
+        <div class="s-agenda-head"><div class="s-agenda-num">3</div><div class="s-agenda-icon">🚀</div></div>
+        <div class="s-agenda-title">도입 로드맵</div>
+        <div class="s-agenda-sub">▶ 솔루션 도입 방법</div>
+      </div>
+      <div class="s-agenda-card">
+        <div class="s-agenda-head"><div class="s-agenda-num">4</div><div class="s-agenda-icon">💬</div></div>
+        <div class="s-agenda-title">Q&amp;A</div>
+        <div class="s-agenda-sub">💬 질의응답</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5: Market Change -->
+  <section class="slide">
+    <div class="s-badge">MARKET</div>
+    <div class="s-h2">변화하는 시력교정 시장</div>
+    <div class="s-lead">양적 확장이 불가능한 시대, <b>질적 성장</b>이 필수입니다</div>
     <div class="s-grid-3">
-      <div class="s-card red">
-        <h4>🗂 시스템 분산</h4>
+      <div class="s-iconcard">
+        <div class="s-iconcard-head">
+          <div class="s-iconcard-ico red">↘</div>
+          <div>
+            <div class="s-iconcard-label">MARKET DEMAND</div>
+            <div class="s-iconcard-title">수요 감소</div>
+          </div>
+        </div>
         <ul>
-          <li>성민CRM + MD소프트 + 종이차트</li>
-          <li>동일 환자 정보 반복 입력</li>
-          <li>통합 조회 불가</li>
+          <li>20~30대 핵심 고객군 급감</li>
+          <li>중위 연령 44.9세 → 63.4세</li>
+          <li>청년 1인당 부양 부담 3배 증가</li>
+          <li style="padding-left:22px;">→ 선택적 수술 지출 여력 감소</li>
         </ul>
       </div>
-      <div class="s-card red">
-        <h4>⏱ 성능 병목</h4>
+      <div class="s-iconcard">
+        <div class="s-iconcard-head">
+          <div class="s-iconcard-ico orange">🏢</div>
+          <div>
+            <div class="s-iconcard-label">COMPETITION</div>
+            <div class="s-iconcard-title">경쟁 심화</div>
+          </div>
+        </div>
         <ul>
-          <li>DB 인덱스 전략 부재</li>
-          <li>주요 조회 p95 지연</li>
-          <li>성능 측정 문화 부재</li>
+          <li>성숙기 시장 → 새 고객 유입 한계</li>
+          <li>제로섬 게임으로 경쟁이 치열</li>
+          <li>글로벌 시장은 성장 중(연 9.6%)이나 국내는 정체</li>
         </ul>
       </div>
-      <div class="s-card red">
-        <h4>🔐 보안·관측 한계</h4>
+      <div class="s-iconcard">
+        <div class="s-iconcard-head">
+          <div class="s-iconcard-ico purple">💰</div>
+          <div>
+            <div class="s-iconcard-label">PROFITABILITY</div>
+            <div class="s-iconcard-title">수익성 압박</div>
+          </div>
+        </div>
         <ul>
-          <li>RBAC·감사로그 미흡</li>
-          <li>단일 세션 정책 없음</li>
-          <li>중앙 로그 체계 부재</li>
+          <li>마케팅 비용 지속 상승</li>
+          <li>환자 유치 단가 증가</li>
+          <li>저가 경쟁으로 마진 축소</li>
         </ul>
       </div>
     </div>
+    <div class="s-flow">
+      <span class="s-flow-pill">수요 감소</span>
+      <span class="s-flow-op">+</span>
+      <span class="s-flow-pill">경쟁 심화</span>
+      <span class="s-flow-op">+</span>
+      <span class="s-flow-pill">수익성 압박</span>
+      <span class="s-flow-op" style="display:inline-flex;align-items:center"><svg width="28" height="16" viewBox="0 0 28 16" fill="none" style="vertical-align:middle"><path d="M1 8 H22 M16 2 L22 8 L16 14" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="s-flow-result">양적 성장 불가능</span>
+    </div>
+    <div style="margin-top:10px;display:flex;justify-content:center"><svg width="18" height="26" viewBox="0 0 18 26" fill="none"><path d="M9 1 V20 M2 14 L9 21 L16 14" stroke="#8b92a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="s-closing">이제는 질적 성장(프리미엄 전환)이 유일한 해답</div>
   </section>
 
-  <!-- 5: TO-BE -->
+  <!-- 6: 3중 과제 -->
   <section class="slide">
-    <div class="s-badge">TO-BE</div>
-    <div class="s-h2">통합 플랫폼으로 전환</div>
-    <div class="s-lead">파편화된 시스템을 하나의 흐름으로</div>
-    <div class="s-grid-4">
-      <div class="s-card blue"><h4>👁 LOOCUS VISION</h4><ul><li>안과 검사장비 통합 뷰어</li></ul></div>
-      <div class="s-card blue"><h4>👥 CRM 아이차트</h4><ul><li>환자 여정 통합 관리</li></ul></div>
-      <div class="s-card blue"><h4>📞 CTI 콜센터</h4><ul><li>전화·상담 통합 응대</li></ul></div>
-      <div class="s-card blue"><h4>📄 EMR 전자차트</h4><ul><li>의무기록·처방·수납</li></ul></div>
+    <div class="s-badge">CHALLENGE</div>
+    <div class="s-h2">💰 매출 성장의 3중 과제</div>
+    <div class="s-lead">환자 유치만으로 부족 — <b>객단가 상승</b>이 필수</div>
+    <div style="margin:-10px 0 -2px;display:flex;justify-content:center"><svg width="20" height="14" viewBox="0 0 20 14" fill="#4a9eff"><path d="M10 0 L20 14 H0 Z"/></svg></div>
+    <div class="tree-connector"><div class="tc-v-up"></div><div class="tc-h"></div><div class="tc-v v1"></div><div class="tc-v v2"></div><div class="tc-v v3"></div></div>
+    <div class="s-grid-3">
+      <div class="s-card orange">
+        <div class="s-card-top" style="font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:10px">📢 계속해서 높아지는 인입 비용</div>
+        <h4>환자 유치 <span style="float:right;font-size:11px;font-weight:700;color:#8b92a0;border:1px solid #2a3142;padding:2px 8px;border-radius:999px">잠재 고객 → 내원</span></h4>
+        <ul><li>마케팅 비용 증가 (경쟁 심화, 의료 규제 등)</li><li>차별성 부족으로 인한 출혈 경쟁</li></ul>
+      </div>
+      <div class="s-card green">
+        <div class="s-card-top" style="font-size:12px;font-weight:800;color:#22c55e;margin-bottom:10px">📈 단순 응대로는 전환율 유지 불가</div>
+        <h4>수술 전환 <span style="float:right;font-size:11px;font-weight:700;color:#8b92a0;border:1px solid #2a3142;padding:2px 8px;border-radius:999px">검사 → 수술 결정</span></h4>
+        <ul><li>검사 후 예약 취소율 증가</li><li>상담 단계 이탈률 상승중</li><li>내원 환자의 높은(까다로운) 수술 결정 기준</li></ul>
+      </div>
+      <div class="s-card blue">
+        <div class="s-card-top" style="font-size:12px;font-weight:800;color:#4a9eff;margin-bottom:10px">💎 프리미엄 수술 전환의<br>명분 및 설득 포인트 미비</div>
+        <h4>프리미엄 수술 전환 <span style="float:right;font-size:11px;font-weight:700;color:#8b92a0;border:1px solid #2a3142;padding:2px 8px;border-radius:999px">일반 → 프리미엄 수술</span></h4>
+        <ul><li>정보력 높은 '스마트 환자' 증가</li><li>프리미엄 수술의 가격 정당성 증명 곤란</li></ul>
+      </div>
     </div>
   </section>
 
-  <!-- 6: Control Tower -->
+  <!-- 7: 과제 해결 요건 -->
+  <section class="slide">
+    <div class="s-badge">SOLUTION FIT</div>
+    <div class="s-h2">과제 해결을 위한 요건</div>
+    <div class="s-lead">비앤빛은 LOOCUS 솔루션을 통해 해결했습니다</div>
+    <div class="s-dual">
+      <div class="s-dual-box left" style="border-top:3px solid #ef4444">
+        <div class="s-dual-head" style="color:#ef4444">CHALLENGE</div>
+        <div class="challenge-title">수술 기준 불일치 → 품질 편차 및 이탈률 증가</div>
+        <ul>
+          <li>원장님별 수술 기준이 모두 다름</li>
+          <li>상담사가 원장님별로 수기로 계산</li>
+          <li>집도의 변경 시 수술 판단까지 변경</li>
+        </ul>
+        <div style="margin-top:8px;font-size:12px;color:#f59e0b;font-weight:700">⚠ 운영 비효율 &amp; 추천 불일치</div>
+      </div>
+      <div class="s-dual-box left" style="border-top:3px solid #8b5cf6">
+        <div class="s-dual-head" style="color:#8b5cf6">CHALLENGE</div>
+        <div class="challenge-title">개인화 상담 부재 → 프리미엄 전환 어려움</div>
+        <ul>
+          <li>공통 PPT 상담 자료로 상담</li>
+          <li>상담사별 상담 품질 편차 발생</li>
+          <li>의학 용어 설명의 어려움</li>
+        </ul>
+        <div style="margin-top:8px;font-size:12px;color:#f59e0b;font-weight:700">⚠ 개인화 경험 부재</div>
+      </div>
+      <div class="s-dual-box left" style="border:1px solid #ef4444">
+        <div class="s-dual-head">⚖ ① 기준 통합 — Standardization <span style="float:right;font-size:11px;background:#ea580c;color:#fff;padding:3px 10px;border-radius:999px">LOOCUS Function ①</span></div>
+        <div class="s-dual-sub">Before : 12명의 원장님, 12개의 기준 / 상담사가 원장님별로 수기 계산, 조율 부담 발생</div>
+        <div class="s-dual-sub">After : AI가 통합된 하나의 기준 제공 / 모든 환자에게 일관된 수술 추천 결과 제시</div>
+        <div class="s-grid-2" style="margin-top:10px;gap:10px">
+          <div style="background:#2a2416;border:1px solid #3a3220;border-radius:8px;padding:10px">
+            <div style="font-size:12px;font-weight:800;color:#fbbf24;margin-bottom:6px">👤 의료진 관점</div>
+            <ul style="margin:0;font-size:12px"><li>상담사가 원장님별로 수기 계산할 필요 없음</li><li>어떤 원장님이 진료하든 일관된 추천 가능</li></ul>
+          </div>
+          <div style="background:#2a1a1f;border:1px solid #3a2028;border-radius:8px;padding:10px">
+            <div style="font-size:12px;font-weight:800;color:#fca5a5;margin-bottom:6px">👤 환자 관점</div>
+            <ul style="margin:0;font-size:12px"><li>"이 병원은 기준이 명확하다"는 신뢰감 형성</li><li>예약 변경으로 담당 원장님 바뀌어도 혼란 없음</li></ul>
+          </div>
+        </div>
+      </div>
+      <div class="s-dual-box left" style="border:1px solid #8b5cf6">
+        <div class="s-dual-head">🎯 ② 환자 설득 — Scientific Evidence <span style="float:right;font-size:11px;background:#2563eb;color:#fff;padding:3px 10px;border-radius:999px">LOOCUS Function ②</span></div>
+        <div class="s-dual-sub">Before : 프리미엄이 적합해도 가격 차이 때문에 안내하기 부담 / 환자가 가격 저항감 느낌</div>
+        <div class="s-dual-sub">After : "100개 이상의 검안 데이터를 AI로 분석한 결과, 고객님의 눈에는 스마일프로가 92% 적합합니다"</div>
+        <div class="s-grid-2" style="margin-top:10px;gap:10px">
+          <div style="background:#15213a;border:1px solid #1f2d4a;border-radius:8px;padding:10px">
+            <div style="font-size:12px;font-weight:800;color:#93c5fd;margin-bottom:6px">👤 의료진 관점</div>
+            <ul style="margin:0;font-size:12px"><li>객관적 데이터로 프리미엄 수술 권유 근거 확보</li><li>상담사 역량과 무관하게 일정 수준 설득력 유지</li></ul>
+          </div>
+          <div style="background:#2a1a1f;border:1px solid #3a2028;border-radius:8px;padding:10px">
+            <div style="font-size:12px;font-weight:800;color:#fca5a5;margin-bottom:6px">👤 환자 관점</div>
+            <ul style="margin:0;font-size:12px"><li>왜 이 수술인지 과학적 근거로 스스로 납득</li><li>"비싼 수술 권유"가 아닌 "내 눈에 맞는 처방"</li><li>결정에 대한 확신으로 수술 후 후회/불안 감소</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8: 이탈 3유형 -->
+  <section class="slide">
+    <div class="s-badge">DROP-OFF</div>
+    <div class="s-h2">상담에서 이탈되는 세 가지 유형</div>
+    <div class="s-lead">내원 환자가 수술로 이어지지 않는 구조적 이유</div>
+    <div class="s-grid-3">
+      <div class="s-card red" style="text-align:center;position:relative;padding-top:30px">
+        <span style="position:absolute;top:-12px;left:20px;background:#ef4444;color:#fff;font-size:12px;font-weight:800;padding:4px 14px;border-radius:6px">유형 1</span>
+        <div style="font-size:28px;margin:8px 0 14px">🙍‍♂️❌</div>
+        <h4 style="display:block;text-align:center;font-size:17px">기준 불일치 취소 → 고객 유실</h4>
+        <div class="sub" style="text-align:center;margin:10px 0 4px;font-weight:700">상담과 진료 간 기준 불일치</div>
+        <div style="font-size:12.5px;color:#8b92a0;line-height:1.55">상담이 완료되었더라도 진료 후<br>기준 불일치로 인해 취소되는 경우</div>
+        <div style="margin-top:14px;display:inline-block;font-size:12px;font-weight:700;color:#ef4444;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);padding:6px 14px;border-radius:999px">⚠ 상담-진료 간 정보 불일치</div>
+      </div>
+      <div class="s-card orange" style="text-align:center;position:relative;padding-top:30px">
+        <span style="position:absolute;top:-12px;left:20px;background:#f59e0b;color:#fff;font-size:12px;font-weight:800;padding:4px 14px;border-radius:6px">유형 2</span>
+        <div style="font-size:28px;margin:8px 0 14px">⬇️</div>
+        <h4 style="display:block;text-align:center;font-size:17px">다운그레이드 → 객단가 감소</h4>
+        <div class="sub" style="text-align:center;margin:10px 0 4px;font-weight:700">프리미엄 수술 설득 근거 부족</div>
+        <div style="font-size:12.5px;color:#8b92a0;line-height:1.55">프리미엄 수술의 가치를 제대로 설명하지 못해<br>저가 수술로 하향 선택하는 경우</div>
+        <div style="margin-top:14px;display:inline-block;font-size:12px;font-weight:700;color:#f59e0b;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);padding:6px 14px;border-radius:999px">↓ 프리미엄 수술 설득력 부족</div>
+      </div>
+      <div class="s-card blue" style="text-align:center;position:relative;padding-top:30px">
+        <span style="position:absolute;top:-12px;left:20px;background:#4a9eff;color:#fff;font-size:12px;font-weight:800;padding:4px 14px;border-radius:6px">유형 3</span>
+        <div style="font-size:28px;margin:8px 0 14px">🚫</div>
+        <h4 style="display:block;text-align:center;font-size:17px">선호 수술 불가능 → 고객 유실</h4>
+        <div class="sub" style="text-align:center;margin:10px 0 4px;font-weight:700">불가 수술인 경우 대안 수술로 납득 부족</div>
+        <div style="font-size:12.5px;color:#8b92a0;line-height:1.55">수술이 불가능한 경우, 대안 수술 방식에 대한<br>설득력이 부족하여 환자가 이탈하는 경우</div>
+        <div style="margin-top:14px;display:inline-block;font-size:12px;font-weight:700;color:#4a9eff;background:rgba(74,158,255,.1);border:1px solid rgba(74,158,255,.3);padding:6px 14px;border-radius:999px">🚫 대안 수술 설득력 부족</div>
+      </div>
+    </div>
+    <div class="s-closing"><span style="color:#ef4444">고객 이탈, 객단가 감소, 수술 취소</span> — 3가지 유실 유형을 구조적으로 분석하여 상담 구조를 개선합니다</div>
+  </section>
+
+  <!-- 9: VISION/INSIGHT 매칭 -->
+  <section class="slide">
+    <div class="s-badge">LOOCUS VISION / INSIGHT</div>
+    <div class="s-h2">문제별 해결 솔루션</div>
+    <div class="s-lead">기준 불일치 · 설득 근거 부족 · 상담 품질 편차 — 단일 솔루션으로 해결</div>
+    <div class="s-grid-3">
+      <div class="s-card red" style="text-align:center;position:relative;padding-top:30px">
+        <span style="position:absolute;top:-12px;left:20px;background:#ef4444;color:#fff;font-size:12px;font-weight:800;padding:4px 14px;border-radius:6px">문제 1</span>
+        <div style="font-size:26px;margin:8px 0 14px;color:#ef4444">👁</div>
+        <h4 style="display:block;text-align:center;font-size:20px">기준 불일치</h4>
+        <div class="sub" style="text-align:center;font-size:13px;margin:8px 0 16px">상담과 진료 간 기준 불일치</div>
+        <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-radius:10px;padding:12px 14px;text-align:left">
+          <div style="font-size:12px;font-weight:800;color:#ef4444;margin-bottom:6px">👁 LOOCUS VISION</div>
+          <div style="font-size:12.5px;color:#8b92a0;line-height:1.55">AI 표준 기준으로 수술 분석 통합<br>어떤 원장이 진료하든 일관된 결과 제안</div>
+        </div>
+      </div>
+      <div class="s-card orange" style="text-align:center;position:relative;padding-top:30px">
+        <span style="position:absolute;top:-12px;left:20px;background:#f59e0b;color:#fff;font-size:12px;font-weight:800;padding:4px 14px;border-radius:6px">문제 2</span>
+        <div style="font-size:26px;margin:8px 0 14px;color:#f59e0b">💡</div>
+        <h4 style="display:block;text-align:center;font-size:20px">설득 근거 부족</h4>
+        <div class="sub" style="text-align:center;font-size:13px;margin:8px 0 16px">프리미엄 수술 설득 근거 부족</div>
+        <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:12px 14px;text-align:left">
+          <div style="font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:6px">💡 LOOCUS INSIGHT</div>
+          <div style="font-size:12.5px;color:#8b92a0;line-height:1.55">환자별 실제 데이터 기반 시각화 상담<br>수술별 적합도 비교로 프리미엄 설득</div>
+        </div>
+      </div>
+      <div class="s-card blue" style="text-align:center;position:relative;padding-top:30px">
+        <span style="position:absolute;top:-12px;left:20px;background:#4a9eff;color:#fff;font-size:12px;font-weight:800;padding:4px 14px;border-radius:6px">문제 3</span>
+        <div style="font-size:26px;margin:8px 0 14px;color:#4a9eff">✔</div>
+        <h4 style="display:block;text-align:center;font-size:20px">상담 품질 편차</h4>
+        <div class="sub" style="text-align:center;font-size:13px;margin:8px 0 16px">상담사 역량에 따른 품질 편차</div>
+        <div style="background:rgba(74,158,255,.08);border:1px solid rgba(74,158,255,.25);border-radius:10px;padding:12px 14px;text-align:left">
+          <div style="font-size:12px;font-weight:800;color:#4a9eff;margin-bottom:6px">✔ LOOCUS INSIGHT</div>
+          <div style="font-size:12.5px;color:#8b92a0;line-height:1.55">상담사 역량에 무관하게 일정 수준 설득력 유지<br>"비싼 수술 권유"가 아닌 "내 눈에 맞는 처방"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10: 솔루션 개요 -->
+  <section class="slide">
+    <div class="s-badge">OVERVIEW</div>
+    <div class="s-h2">LOOCUS 솔루션 개요</div>
+    <div class="s-lead">비앤빛 AI 기술의 범용화 — VISION / INSIGHT</div>
+    <div class="s-dual">
+      <div class="s-dual-box left sol-box sol-vision">
+        <div class="sol-head">
+          <div class="sol-icon">🖥</div>
+          <div><div class="sol-title">LOOCUS VISION</div><div class="sol-sub">AI 기반 수술 추천</div></div>
+        </div>
+        <div class="sol-body">
+          <ul>
+            <li>수술 적합성 AI 분석 및 추천</li>
+            <li>ICL 렌즈 사이즈 및 Vault 예측</li>
+          </ul>
+          <div class="sol-divider"></div>
+          <div class="sol-label">SOLVES CHALLENGES</div>
+          <div class="sol-chip"><span class="tag">과제 ①</span>수술 기준 통합 (AI 표준 기준)</div>
+          <div class="sol-chip"><span class="tag">과제 ②</span>환자 설득 (과학적 근거)</div>
+        </div>
+      </div>
+      <div class="s-dual-box left sol-box sol-insight">
+        <div class="sol-head">
+          <div class="sol-icon">📊</div>
+          <div><div class="sol-title">LOOCUS INSIGHT</div><div class="sol-sub">데이터 시각화 상담</div></div>
+        </div>
+        <div class="sol-body">
+          <ul>
+            <li>검사 결과의 직관적 시각화</li>
+            <li>환자 맞춤형 상담 리포트 생성</li>
+          </ul>
+          <div class="sol-divider"></div>
+          <div class="sol-label">SOLVES CHALLENGES</div>
+          <div class="sol-chip"><span class="tag">과제 ②</span>환자 설득 (시각적 이해)</div>
+          <div class="sol-chip"><span class="tag">과제 ③</span>상담 품질 (맞춤형 경험)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11: VISION flow -->
+  <section class="slide">
+    <div class="s-badge">LOOCUS VISION</div>
+    <div class="s-h2">AI 기반 수술 추천 시스템</div>
+    <div class="s-lead">입력 데이터 → 분석 알고리즘 → 추천 결과</div>
+    <div class="flow-row">
+      <div class="flow-tag">기능 ① 시력교정술 추천 AI</div>
+      <div class="flow-grid">
+        <div class="flow-cell">
+          <div class="fc-head">📥 입력 데이터</div>
+          <ul><li>굴절검사</li><li>Biometry</li><li>Pentacam</li></ul>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-cell center">
+          <div class="fc-icon">🧠</div>
+          <div class="fc-title">시력교정술 분류 알고리즘</div>
+          <div class="fc-sub">굴절 이상, 각막 지형, 동공 크기 등</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-cell">
+          <div class="fc-head">📊 분석 결과</div>
+          <ul><li>최적 수술 추천</li></ul>
+          <div style="font-size:11.5px;color:#8b92a0;margin-top:4px;padding-left:16px">(라식/라섹/스마일/스마일프로/ICL)</div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-tag">기능 ② ICL 사이징 AI</div>
+      <div class="flow-grid">
+        <div class="flow-cell">
+          <div class="fc-head">📥 입력 데이터</div>
+          <ul><li>굴절검사 / Biometry</li><li>Pentacam</li><li>AS-OCT (CASIA2)</li></ul>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-cell center">
+          <div class="fc-icon">🧠</div>
+          <div class="fc-title">Size/Vault 예측 알고리즘</div>
+          <div class="fc-sub">굴절 이상, 전방 깊이, WTW 등</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-cell">
+          <div class="fc-head">📊 분석 결과</div>
+          <ul><li>최적 ICL 렌즈 사이즈</li><li>Vault 값 예측 (안전성 확보)</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12: VISION 구성도 -->
+  <section class="slide">
+    <div class="s-badge">ARCHITECTURE</div>
+    <div class="s-h2">LOOCUS VISION 시스템 구성도</div>
+    <div class="s-lead">병원 내 Agent + 클라우드 VISION/INSIGHT</div>
+    <div class="arch-wrap" style="grid-template-columns: 1.7fr 40px 1fr;align-items:stretch">
+      <div class="arch-box" style="display:grid;grid-template-columns:110px 30px 1.2fr;gap:14px;align-items:stretch;padding:22px 20px;position:relative;overflow:visible">
+      <div style="display:flex;flex-direction:column;justify-content:space-between;gap:10px;position:relative;padding:6px 0">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="arch-pill">CRM</div>
+          <div class="arch-pill">EMR</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:40px">🧑‍⚕️</div>
+          <div style="font-size:11px;color:#8b92a0;font-weight:700;margin-top:2px">병원 상담사</div>
+        </div>
+      </div>
+      <div style="position:relative;display:flex;align-items:center;justify-content:center;z-index:5">
+        <svg width="30" height="100%" viewBox="0 0 30 200" preserveAspectRatio="none" style="position:absolute;inset:0">
+          <path d="M 0 50 L 15 50 L 15 100 L 28 100" stroke="#4a9eff" stroke-width="2" fill="none"/>
+          <path d="M 0 150 L 15 150 L 15 100 L 28 100" stroke="#4a9eff" stroke-width="2" fill="none"/>
+          <polygon points="28,95 28,105 34,100" fill="#4a9eff"/>
+        </svg>
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:999px;background:#10b981;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;z-index:20">1</div>
+      </div>
+      <div class="arch-inner">
+        <div class="arch-title"><b>LOOCUS</b> Agent</div>
+        <div style="display:grid;grid-template-columns:1fr 60px 1fr;gap:14px;align-items:stretch">
+          <div class="arch-sub">
+            <div class="arch-sub-title">Agent Server</div>
+            <div class="arch-item">병원 DB 데이터 자동 연동</div>
+            <div class="arch-item">LOOCUS CLOUD 통신</div>
+          </div>
+          <div style="text-align:center;font-size:10.5px;color:#8b92a0;line-height:1.6;align-self:center">
+            <div>데이터 저장</div>
+            <div style="color:#4a9eff;font-size:14px">⇄</div>
+            <div>데이터 로드</div>
+          </div>
+          <div class="arch-sub" style="position:relative">
+            <div class="arch-num" style="left:-11px;top:-11px">2</div>
+            <div class="arch-sub-title">Agent DB</div>
+            <div class="arch-item">정제된 의료 데이터</div>
+            <div class="arch-item">AI 모델 결과</div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="arch-connector" style="flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:2px"><div style="width:22px;height:2px;background:#10b981"></div><div style="width:0;height:0;border-left:8px solid #10b981;border-top:5px solid transparent;border-bottom:5px solid transparent"></div></div>
+        <div style="display:flex;align-items:center;gap:2px"><div style="width:0;height:0;border-right:8px solid #10b981;border-top:5px solid transparent;border-bottom:5px solid transparent"></div><div style="width:22px;height:2px;background:#10b981"></div></div>
+      </div>
+      <div class="arch-box" style="position:relative">
+        <div class="arch-num" style="left:14px;top:14px">3</div>
+        <div class="arch-title"><b>LOOCUS</b> VISION/INSIGHT</div>
+        <div class="arch-row" style="grid-template-columns:1fr 24px 1fr;align-items:stretch">
+          <div class="arch-sub">
+            <div class="arch-sub-title" style="color:#4a9eff">LOOCUS VISION</div>
+            <div class="arch-item">검안데이터 기반<br>시력교정술 AI 모델 추천</div>
+            <div class="arch-item">렌즈 삽입술 예후<br>AI 모델 예측</div>
+          </div>
+          <div style="text-align:center;font-size:16px;color:#8b92a0;align-self:center">↔</div>
+          <div class="arch-sub">
+            <div class="arch-sub-title" style="color:#a855f7">LOOCUS INSIGHT</div>
+            <div class="arch-item" style="background:rgba(168,85,247,.08);border-color:rgba(168,85,247,.25)">환자 검안데이터 시각화</div>
+            <div class="arch-item" style="background:rgba(168,85,247,.08);border-color:rgba(168,85,247,.25)">수술 설명 자료</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="arch-legend">
+      <div class="leg-item"><div class="leg-num">1</div><div>병원 CRM &amp; EMR 연동으로 서비스 데이터 자동 추출</div></div>
+      <div class="leg-item"><div class="leg-num">2</div><div>병원 내의 서버에 DB를 구축함으로써 의료 데이터 외부 유출 방지, LOOCUS VISION 데이터 전송 시 암호화로 데이터 보호</div></div>
+      <div class="leg-item"><div class="leg-num">3</div><div>클라우드 기반 서버 운용으로 확장성 및 안정성 확보</div></div>
+    </div>
+  </section>
+
+  <!-- 13: VISION 예시 화면 -->
+  <section class="slide">
+    <div class="s-badge">SCREEN</div>
+    <div class="s-h2">LOOCUS VISION — 예시 화면</div>
+    <img src="../image/슬라이드13.png" alt="LOOCUS VISION 예시 화면" style="width:100%;max-width:var(--slide-w);border-radius:12px;border:1px solid #2a3142;margin-top:12px">
+  </section>
+
+  <!-- 14: VISION Demo -->
+  <section class="slide">
+    <div class="s-badge">DEMO</div>
+    <div class="s-title" style="font-size:72px;">LOOCUS VISION</div>
+    <div class="s-subtitle">AI 기반 수술 추천 시스템 — 시연</div>
+  </section>
+
+  <!-- 15: INSIGHT 비교 -->
+  <section class="slide">
+    <div class="s-badge">LOOCUS INSIGHT</div>
+    <div class="s-h2">환자 맞춤형 시각화 상담 도구</div>
+    <div class="s-lead">기존 상담 PPT vs LOOCUS INSIGHT</div>
+    <div class="s-dual">
+      <div class="s-dual-box left cmp-box cmp-old">
+        <div class="cmp-head">
+          <div class="cmp-title">기존 상담 PPT</div>
+          <div class="cmp-sub">일반적인 설명 방식</div>
+        </div>
+        <div class="cmp-body">
+          <div class="cmp-row"><div class="cmp-label">데이터</div><div class="cmp-val">🖼 공통 이미지 / 예시 자료</div></div>
+          <div class="cmp-row"><div class="cmp-label">설명방식</div><div class="cmp-val">🗣 "예시"를 통한 간접 설명</div></div>
+          <div class="cmp-row"><div class="cmp-label">수치표현</div><div class="cmp-val">📋 단순 숫자 나열 (체감 낮음)</div></div>
+          <div class="cmp-row"><div class="cmp-label">결과물</div><div class="cmp-val">📄 일회성 설명 / 종이 브로슈어</div></div>
+        </div>
+      </div>
+      <div class="s-dual-box left cmp-box cmp-new">
+        <div class="cmp-head">
+          <div class="cmp-title">LOOCUS INSIGHT</div>
+          <div class="cmp-sub">데이터 기반 시각화</div>
+        </div>
+        <div class="cmp-body">
+          <div class="cmp-row"><div class="cmp-label">데이터</div><div class="cmp-val">💾 환자별 실제 검사 데이터</div></div>
+          <div class="cmp-row"><div class="cmp-label">설명방식</div><div class="cmp-val">👁 "내 눈" 데이터로 직접 설명</div></div>
+          <div class="cmp-row"><div class="cmp-label">수치표현</div><div class="cmp-val">📊 그래프/게이지 시각적 강조</div></div>
+          <div class="cmp-row"><div class="cmp-label">결과물</div><div class="cmp-val">📱 AI 추천 결과 표시<br>수술별 적합도 비교로 프리미엄 수술 설득<br>모바일 앱에서 언제든 재확인</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16: INSIGHT 예시 화면 -->
+  <section class="slide">
+    <div class="s-badge">SCREEN</div>
+    <div class="s-h2">LOOCUS INSIGHT — 예시 화면</div>
+    <img src="../image/슬라이드16.png" alt="LOOCUS INSIGHT 예시 화면" style="width:100%;max-width:var(--slide-w);border-radius:12px;border:1px solid #2a3142;margin-top:12px">
+  </section>
+
+  <!-- 17: INSIGHT Demo -->
+  <section class="slide">
+    <div class="s-badge">DEMO</div>
+    <div class="s-title" style="font-size:72px;">LOOCUS INSIGHT</div>
+    <div class="s-subtitle">환자 맞춤형 시각화 상담 도구 — 시연</div>
+  </section>
+
+  <!-- 18: 프로세스 변화 -->
+  <section class="slide">
+    <div class="s-badge">PROCESS CHANGE</div>
+    <div class="s-h2">비앤빛 상담 프로세스 변화</div>
+    <div class="s-lead">Before &amp; After — LOOCUS AI 도입</div>
+    <div class="proc-row">
+      <div class="proc-lbl">BEFORE</div>
+      <div class="proc-step"><div class="ps-box"><div class="ps-ico">🔬</div><div class="ps-title">검사</div></div><div class="ps-sub">&nbsp;</div></div>
+      <div class="proc-arrow">→</div>
+      <div class="proc-step"><div class="ps-box"><div class="ps-ico">🧮</div><div class="ps-title">상담사<br>수기계산</div></div><div class="ps-sub">&nbsp;</div></div>
+      <div class="proc-arrow">→</div>
+      <div class="proc-step bad"><div class="ps-flag">⏱ 대기 발생</div><div class="ps-box"><div class="ps-ico">👥</div><div class="ps-title">원장님<br>중간 컨펌</div></div><div class="ps-sub">진료 중단/확인</div></div>
+      <div class="proc-arrow">→</div>
+      <div class="proc-step"><div class="ps-box"><div class="ps-ico">💬</div><div class="ps-title">상담 재개</div></div><div class="ps-sub">확인 후 설명</div></div>
+      <div class="proc-arrow">→</div>
+      <div class="proc-step"><div class="ps-box"><div class="ps-ico">✔</div><div class="ps-title">최종 진료</div></div><div class="ps-sub">&nbsp;</div></div>
+    </div>
+    <div class="proc-divider"><span>↓ LOOCUS AI 도입</span></div>
+    <div class="proc-row after">
+      <div class="proc-lbl">AFTER</div>
+      <div class="proc-step"><div class="ps-box"><div class="ps-ico">🔬</div><div class="ps-title">검사</div></div><div class="ps-sub">&nbsp;</div></div>
+      <div class="proc-arrow" style="color:#4a9eff">⚡</div>
+      <div class="proc-step hi"><div class="ps-tag">LOOCUS</div><div class="ps-box"><div class="ps-ico">🤖</div><div class="ps-title">AI 자동 추천</div></div><div class="ps-sub">즉시 결과 생성</div></div>
+      <div class="proc-arrow" style="color:#4a9eff">→</div>
+      <div class="proc-step"><div class="ps-box"><div class="ps-ico">📊</div><div class="ps-title">AI 데이터 기반 상담</div></div><div class="ps-sub">중간 컨펌 없이 즉시 진행</div></div>
+      <div class="proc-arrow" style="color:#4a9eff">→</div>
+      <div class="proc-step"><div class="ps-box"><div class="ps-ico">✅</div><div class="ps-title">원장님<br>최종 컨펌</div></div><div class="ps-sub">&nbsp;</div></div>
+    </div>
+    <div class="proc-checks">
+      <div class="proc-check"><div class="pc-icon">✓</div><div><div class="pc-title">중간 컨펌 단계 제거</div><div class="pc-sub">대기 시간 및 업무 중단 해소</div></div></div>
+      <div class="proc-check"><div class="pc-icon">✓</div><div><div class="pc-title">AI 기반으로 상담사 주도 진행</div><div class="pc-sub">AI 표준 기준 기반 확신 상담</div></div></div>
+      <div class="proc-check"><div class="pc-icon">✓</div><div><div class="pc-title">80~90% 케이스에서 원장님 컨펌 없이 즉시 진행</div><div class="pc-sub">대다수 케이스 원스톱 처리</div></div></div>
+    </div>
+    <div class="proc-closing">내원 시간 20% 감소 &nbsp;|&nbsp; 빠르고 명확한 상담 → 고민 감소 → 프리미엄 수술 전환율</div>
+  </section>
+
+  <!-- 19: 비앤빛 실적 -->
+  <section class="slide">
+    <div class="s-badge">RESULTS</div>
+    <div class="s-h2">비앤빛안과 실적 — 수치로 증명</div>
+    <div class="s-lead">2년 간 실사용 검증 결과 (Before vs After)</div>
+    <img src="../image/슬라이드19.png" alt="비앤빛안과 실적" style="width:100%;max-width:var(--slide-w);border-radius:12px;border:1px solid #2a3142;margin-top:12px;display:none" onload="this.style.display='block';this.nextElementSibling.style.display='none'">
+    <div class="res-wrap">
+      <div class="res-sub">비앤빛안과 2년 간 실사용 검증 결과</div>
+      <div class="res-card">
+        <div class="res-grid">
+          <div>
+            <div class="res-chart-head">
+              <div class="res-chart-title">📊 주요 성과 지표 변화 (Before vs After)</div>
+              <div class="res-chart-legend"><span><span class="dot" style="background:#94a3b8"></span>도입 전(~2021)</span><span><span class="dot" style="background:#1e3a8a"></span>도입 후(2022~2023)</span></div>
+            </div>
+            <div class="res-chart">
+              <div class="yaxis">
+                <div style="top:0%">95</div>
+                <div style="top:9%">90</div>
+                <div style="top:18%">85</div>
+                <div style="top:27%">80</div>
+                <div style="top:36%">75</div>
+                <div style="top:45%">70</div>
+                <div style="top:54%">65</div>
+                <div style="top:63%">60</div>
+                <div style="top:72%">55</div>
+                <div style="top:81%">50</div>
+                <div style="top:90%">45</div>
+                <div style="top:99%">40</div>
+              </div>
+              <div class="gridline" style="top:0%"></div>
+              <div class="gridline" style="top:18%"></div>
+              <div class="gridline" style="top:36%"></div>
+              <div class="gridline" style="top:54%"></div>
+              <div class="gridline" style="top:72%"></div>
+              <div class="gridline" style="top:90%"></div>
+              <div class="res-bars">
+                <div class="res-group">
+                  <div class="res-bar before"><div class="rb-fill" style="height:51.6%"><span class="rb-val">68.4%</span></div></div>
+                  <div class="res-bar after"><div class="rb-fill" style="height:73.6%"><span class="rb-val">80.5%</span></div></div>
+                  <div class="res-group-label">수술 전환율</div>
+                </div>
+                <div class="res-group">
+                  <div class="res-bar before"><div class="rb-fill" style="height:33.6%"><span class="rb-val">58.5%</span></div></div>
+                  <div class="res-bar after"><div class="rb-fill" style="height:41.8%"><span class="rb-val">63%</span></div></div>
+                  <div class="res-group-label">프리미엄 비중</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="res-metric">
+              <div class="rm-top"><div class="rm-label">수술 전환율 상승</div><div class="rm-delta">↑ 12.1%p</div></div>
+              <div class="rm-big">80.5%</div>
+              <div class="rm-sub"><span>100명 검사 시 수술 환자</span><b>+12명 추가 확보</b></div>
+            </div>
+            <div class="res-metric">
+              <div class="rm-top"><div class="rm-label">프리미엄 수술 비중</div><div class="rm-delta">↑ 4.5%p</div></div>
+              <div class="rm-big">63.0%</div>
+              <div class="rm-list">
+                <div>✓ 스마일/스마일프로 선택 증가</div>
+                <div>✓ 렌즈삽입술(ICL) 증가</div>
+                <div>✓ 객관적 데이터 확인 후 고가 수술 동의율 ↑</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="res-closing">상담사 인센티브 연계 시 수술 예약 성공률 +5%, 프리미엄 수술 비중 +15% 추가 개선<br>객단가 상승을 통한 매출 확대가 가능합니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 20: 상담사 피드백 -->
+  <section class="slide">
+    <div class="s-badge">STAFF FEEDBACK</div>
+    <div class="s-h2">비앤빛 상담사 피드백</div>
+    <div class="s-lead">LOOCUS 도입 후 상담팀 후기</div>
+    <div class="s-grid-2">
+      <div class="s-quote">
+        <div class="s-quote-text">종이로만 설명할 때보다 AI VISION의 애니메이션을 통해 고객 이해도가 높아졌습니다.</div>
+        <div class="s-quote-who">상담실장 A · 이해도 ↑</div>
+      </div>
+      <div class="s-quote">
+        <div class="s-quote-text">객관적 데이터를 시각적으로 보여주고 근거를 제시하니 본원 신뢰감이 생겨 납득시키기 수월해졌습니다.</div>
+        <div class="s-quote-who">상담팀원 B · 신뢰감 &amp; 설득</div>
+      </div>
+      <div class="s-quote">
+        <div class="s-quote-text">비앤빛만의 차별성·독창성으로 병원 선택을 고민하는 고객에게 확실하게 어필할 수 있는 포인트가 되었습니다.</div>
+        <div class="s-quote-who">상담실장 C · 차별화 포인트</div>
+      </div>
+      <div class="s-quote">
+        <div class="s-quote-text">앱 사용으로 일일이 손으로 적어주던 브로셔가 없어져 단순 업무가 줄어 업무 로딩이 적어졌습니다.</div>
+        <div class="s-quote-who">상담팀원 D · 업무효율 ↑</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21: 고객 피드백 -->
+  <section class="slide">
+    <div class="s-badge">PATIENT FEEDBACK</div>
+    <div class="s-h2">비앤빛 고객 피드백</div>
+    <div class="s-lead">LOOCUS 도입 후 실제 환자 후기</div>
+    <div class="s-grid-3">
+      <div class="s-quote">
+        <div class="s-quote-text"><b>“납득”</b><br>다른 곳에선 안 된다고만 했는데, 여기서는 그래프로 보여주니 납득이 갔습니다. 객관적으로 설명해줘서 신뢰가 갔어요.</div>
+        <div class="s-quote-who">스마일라식 · 20대 남성</div>
+      </div>
+      <div class="s-quote">
+        <div class="s-quote-text"><b>“이해”</b><br>내 눈 상태 데이터를 넣으니 맞춤 설명이 나오더라고요. 전문적인 내용도 영상으로 보니 이해가 쏙쏙 됐습니다.</div>
+        <div class="s-quote-who">스마일프로 · 30대 여성</div>
+      </div>
+      <div class="s-quote">
+        <div class="s-quote-text"><b>“안심”</b><br>AI가 92% 정확도로 렌즈 크기를 예측한다고 해서 안심하고 렌즈삽입술을 결정할 수 있었습니다.</div>
+        <div class="s-quote-who">렌즈삽입술 · 20대 남성</div>
+      </div>
+    </div>
+    <div class="s-closing">시각적 근거가 환자의 이해와 신뢰를 만듭니다</div>
+  </section>
+
+  <!-- 22: 브랜드 마케팅 -->
+  <section class="slide">
+    <div class="s-badge">BRAND</div>
+    <div class="s-h2">브랜드 차별화 마케팅</div>
+    <img src="../image/슬라이드22.png" alt="브랜드 차별화 마케팅" style="width:100%;max-width:var(--slide-w);border-radius:12px;margin-top:12px">
+  </section>
+
+  <!-- 23: 차별적 포지션 -->
+  <section class="slide">
+    <div class="s-badge">POSITION</div>
+    <div class="s-h2">LOOCUS 도입 병원만의 차별적 포지션</div>
+    <div class="s-lead">AI 도입을 통한 브랜드 차별화 및 환자 유치 전략</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;width:100%;max-width:var(--slide-w)">
+      <div class="pos-card">
+        <div class="pos-title">인허가 AI 의료기기 도입 타이틀</div>
+        <div class="pos-divider"></div>
+        <div class="pos-img"><img src="../image/슬라이드23_인허가.png" alt="인허가 증명서" onerror="this.parentElement.innerHTML='<div class=\'pos-img-ph\'>인허가 증명서 이미지<br><small>image/슬라이드23_인허가.png</small></div>'"></div>
+        <ul class="pos-list">
+          <li>시력교정술 추천 AI 의료기기 인허가 완료 예정 (2분기)</li>
+          <li>인허가 AI 의료기기 도입 병원으로서 대외 신뢰도 확보</li>
+          <li>타 병원과 차별화된 마케팅 요소 획득</li>
+        </ul>
+      </div>
+      <div class="pos-card">
+        <div class="pos-title">학술 협력 기회</div>
+        <div class="pos-divider"></div>
+        <div class="pos-img"><img src="../image/슬라이드23_학술 협력 기회.png" alt="Nature 논문 등재" onerror="this.parentElement.innerHTML='<div class=\'pos-img-ph\'>Nature Digital Medicine 이미지<br><small>image/슬라이드23_학술 협력 기회.png</small></div>'"></div>
+        <ul class="pos-list">
+          <li>비쥬웍스와의 공동 연구 및 AI 데이터 협업, 공동 논문 발행 지원</li>
+          <li>학술적 성과를 통한 병원 전문성 입증 및 신뢰도 제고</li>
+          <li style="color:#2563eb;font-weight:700">대표 특허: KR 10-2320250, US 11,213,201 등 (한·미·일·대만 글로벌 등록)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cta-banner" style="margin-top:20px;margin-bottom:0;justify-content:center"><div class="cb-text">기술 도입을 넘어, 병원의 학술적 입지와 브랜드 차별화까지 함께 만들어갑니다</div></div>
+  </section>
+
+  <!-- 24: 성과의 핵심 요인 -->
+  <section class="slide">
+    <div class="s-badge">KEY FACTOR</div>
+    <div class="s-h2">비앤빛 성과의 핵심 요인</div>
+    <div class="s-lead">AI 도입 + 프로세스 개편</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:34px;width:100%;max-width:var(--slide-w)">
+      <div class="hero-card" style="flex:1">
+        <div class="hc-icon">🖥</div>
+        <div class="hc-title">LOOCUS 솔루션</div>
+        <div class="hc-sub">프로세스 재설계의 핵심 인프라</div>
+      </div>
+      <div class="hero-plus">+</div>
+      <div class="hero-card" style="flex:1">
+        <div class="hc-icon">🔄</div>
+        <div class="hc-title">프로세스 개편</div>
+        <div class="hc-sub">상담-수술 프로세스 재설계</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 25: 비쥬웍스 역할 -->
+  <section class="slide">
+    <div class="s-badge">OUR ROLE</div>
+    <div class="s-h2">비쥬웍스의 역할</div>
+    <div class="cta-banner"><div class="cb-check">✓</div><div class="cb-text">LOOCUS 솔루션과 비앤빛이 검증한 프로세스 개편 사례를 함께 제안드립니다</div></div>
+    <div style="width:100%;max-width:var(--slide-w);display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="role-card"><div class="rc-icon" style="background:#eef2ff;color:#4338ca">📋</div><div><span class="rc-tag" style="background:#e0e7ff;color:#4338ca">사례 공유</span><div class="rc-title">비앤빛 프로세스 개편 방법론</div><div class="rc-sub">검증된 성공 사례를 기반으로 한 실질적인 운영 변화 사례 공유</div></div></div>
+      <div class="role-card"><div class="rc-icon" style="background:#f3e8ff;color:#7c3aed">🖥</div><div><span class="rc-tag" style="background:#ede9fe;color:#7c3aed">인프라 기술 지원</span><div class="rc-title">VISION + INSIGHT 솔루션</div><div class="rc-sub">프로세스 개편의 핵심 인프라 역할을 수행하는 AI 기술 지원</div></div></div>
+      <div class="role-card"><div class="rc-icon" style="background:#ecfdf5;color:#059669">🎯</div><div><span class="rc-tag" style="background:#d1fae5;color:#059669">도입 지원</span><div class="rc-title">상담 프로세스 최적화</div><div class="rc-sub">도입 과정에서 병원 상황에 맞는 최적의 상담 흐름 설계 지원</div></div></div>
+      <div class="role-card"><div class="rc-icon" style="background:#fef3c7;color:#d97706">📖</div><div><span class="rc-tag" style="background:#fef3c7;color:#d97706">온보딩</span><div class="rc-title">상담사 교육 및 운영 가이드</div><div class="rc-sub">실무진이 솔루션을 효과적으로 활용할 수 있도록 온보딩 프로그램 제공</div></div></div>
+    </div>
+  </section>
+
+  <!-- 26: FUNDUS AI -->
+  <section class="slide">
+    <div class="s-badge">FUNDUS AI</div>
+    <div class="s-h2">FUNDUS AI 기반 외래 진료 지원</div>
+    <div class="s-lead">안저 영상 이상 소견 탐지로 외래 판단과 후속 조치 지원</div>
+    <div class="s-grid-3" style="position:relative">
+      <div class="fundus-step">
+        <div class="fs-icon">🖼</div>
+        <div class="fs-title">안저 영상 확인</div>
+        <div class="fs-sub">고품질 안저 영상 촬영 및<br>자동 분석 시스템</div>
+      </div>
+      <div class="fundus-step" style="position:relative">
+        <span class="fundus-arrow" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%)">›</span>
+        <div class="fs-icon">🔍</div>
+        <div class="fs-title">이상 소견 탐지</div>
+        <div class="fs-sub">AI 기반 이상 소견 탐지<br>변화 비교 및 추적</div>
+      </div>
+      <div class="fundus-step" style="position:relative">
+        <span class="fundus-arrow" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%)">›</span>
+        <div class="fs-icon">👥</div>
+        <div class="fs-title">추가 검사 지원</div>
+        <div class="fs-sub">환자 설명 및<br>치료 연결 지원</div>
+      </div>
+    </div>
+    <div class="s-grid-3" style="margin-top:16px;">
+      <div class="s-card green"><h4>💰 객단가 상승</h4><ul><li>외래 조기 발견 → 추가 검사·치료 연결</li></ul></div>
+      <div class="s-card green"><h4>🔄 지속 매출</h4><ul><li>정기 검진·추적 관찰 체계</li></ul></div>
+      <div class="s-card green"><h4>⭐ 브랜드 가치</h4><ul><li>사후 관리 → 신뢰·입소문</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 27: 아이차트 로드맵 -->
+  <section class="slide">
+    <div class="s-badge">EYECHARTPRO</div>
+    <div class="s-h2">아이차트(EyeChartPro) 로드맵</div>
+    <div class="s-lead">파편화된 시스템에서 통합 플랫폼으로</div>
+    <table class="s-tbl">
+      <thead><tr><th>구분</th><th>As-Is (현재)</th><th>To-Be (아이차트)</th></tr></thead>
+      <tbody>
+        <tr><td>전산환경</td><td class="bef">성민CRM+MD소프트+종이차트 3개 분산</td><td class="aft">올인원 패키지 (CRM·EMR·차트 통합)</td></tr>
+        <tr><td>솔루션 도입</td><td class="bef">신규 기능마다 커스텀 개발</td><td class="aft">원클릭 플러그인 (Plug &amp; Play)</td></tr>
+        <tr><td>데이터 보관</td><td class="bef">시스템별 분산, 통합 분석 불가</td><td class="aft">온프레미스 통합 DB (보안 강화)</td></tr>
+        <tr><td>사용 환경</td><td class="bef">Windows PC 전용, 고정 자리</td><td class="aft">Web 기반 — Mac·태블릿·모바일 자유</td></tr>
+        <tr><td>UI / 화면</td><td class="bef">고정 레이아웃</td><td class="aft">병원별 맞춤 UI 자유 구성</td></tr>
+        <tr><td>유지보수</td><td class="bef">시스템마다 별도 업체</td><td class="aft">단일 창구 일원화</td></tr>
+      </tbody>
+    </table>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:var(--slide-w);margin-top:16px">
+      <div class="feat-mini"><div class="fm-head"><span class="fm-icon">🔗</span><span class="fm-title">환자 여정 통합</span></div><div class="fm-sub">마케팅→예약→검사→상담→수술→사후관리 전 과정을 <b>한 화면에서</b></div></div>
+      <div class="feat-mini"><div class="fm-head"><span class="fm-icon">📊</span><span class="fm-title">경영 컨트롤 타워</span></div><div class="fm-sub">매출·수술건수·전환율·직원 실적을 <b>실시간 시각화</b></div></div>
+      <div class="feat-mini"><div class="fm-head"><span class="fm-icon">⚡</span><span class="fm-title">원클릭 확장</span></div><div class="fm-sub">새 서비스/장비/채널을 <b>버튼 하나로 연동</b></div></div>
+    </div>
+  </section>
+
+  <!-- 28: Control Tower -->
   <section class="slide">
     <div class="s-badge">CONTROL TOWER</div>
-    <div class="s-h2">경영진 통합 컨트롤 타워</div>
-    <div class="s-lead">데이터가 연결되면, 보이지 않던 운영이 숫자로 설명됩니다</div>
+    <div class="s-h2">경영진을 위한 통합 컨트롤 타워</div>
+    <div class="s-lead">데이터가 연결되면, 보이지 않던 병원 운영이 숫자로 설명됩니다</div>
     <table class="s-tbl">
-      <thead><tr><th>구분</th><th>현재</th><th>도입 후</th></tr></thead>
+      <thead><tr><th>구분</th><th>현재</th><th>비쥬웍스 도입 후</th></tr></thead>
       <tbody>
         <tr><td>매출 파악</td><td class="bef">월말 합산 중심</td><td class="aft">일별·수술별·원장별 실시간</td></tr>
-        <tr><td>상담 성과</td><td class="bef">감으로 판단</td><td class="aft">전환율·프리미엄 수치화</td></tr>
-        <tr><td>마케팅 ROI</td><td class="bef">유입→수술 연결 불가</td><td class="aft">채널별 전환 추적</td></tr>
-        <tr><td>운영 병목</td><td class="bef">파악 어려움</td><td class="aft">체류·이탈 구간 가시화</td></tr>
+        <tr><td>상담 성과</td><td class="bef">감으로 판단</td><td class="aft">전환율·프리미엄 비중 수치화</td></tr>
+        <tr><td>인센티브/인사</td><td class="bef">기준 불투명</td><td class="aft">성과 기준 수치화</td></tr>
+        <tr><td>마케팅 ROI</td><td class="bef">수술 연결 추적 불가</td><td class="aft">채널별 유입→수술 추적</td></tr>
+        <tr><td>운영 병목</td><td class="bef">체류·이탈 파악 불가</td><td class="aft">상담 병목 가시화</td></tr>
+        <tr><td>비용/운영 관리</td><td class="bef">수기 관리, 사각지대</td><td class="aft">이상 감지 및 사전 알림</td></tr>
       </tbody>
     </table>
   </section>
 
-  <!-- 7: Adoption Plan -->
+  <!-- 29: 통합 플랫폼 연동 -->
   <section class="slide">
-    <div class="s-badge">ADOPTION PLAN</div>
-    <div class="s-h2">5단계 도입 로드맵</div>
-    <div class="s-lead">안정적 전환을 위한 단계별 전개</div>
+    <div class="s-badge">INTEGRATION</div>
+    <div class="s-h2">매출 · 상담 · 인사 — 하나의 흐름</div>
+    <div class="cta-banner"><div class="cb-check">✓</div><div class="cb-text">매출도, 상담도, 인사도 — 하나의 흐름 안에서 보이기 시작합니다</div></div>
+    <div class="s-grid-4" style="margin-bottom:22px">
+      <div class="int-card"><div class="ic-icon" style="background:#eff6ff;color:#2563eb">👁</div><div class="ic-title">LOOCUS VISION</div><div class="ic-sub">안과 검사장비 통합 뷰어</div></div>
+      <div class="int-card"><div class="ic-icon" style="background:#ecfdf5;color:#059669">👥</div><div class="ic-title">CRM (아이차트)</div><div class="ic-sub">환자 여정 통합 관리</div></div>
+      <div class="int-card"><div class="ic-icon" style="background:#fef2f2;color:#dc2626">📞</div><div class="ic-title">CTI 콜센터</div><div class="ic-sub">전화·상담 통합 응대</div></div>
+      <div class="int-card"><div class="ic-icon" style="background:#fff7ed;color:#ea580c">📋</div><div class="ic-title">EMR 전자차트</div><div class="ic-sub">의무기록·처방·수납</div></div>
+    </div>
+    <div class="surface-card" style="width:100%;max-width:var(--slide-w)">
+      <div class="surface-heading">📈 도입 후 기대 효과</div>
+      <table class="int-tbl">
+        <thead><tr><th>영역</th><th>Before</th><th>After</th></tr></thead>
+        <tbody>
+          <tr><td><b>업무 효율</b></td><td>3개 시스템 이중 입력</td><td>1개 시스템 단일 입력</td></tr>
+          <tr><td><b>데이터 활용</b></td><td>통합 분석 불가</td><td>실시간 통합 대시보드</td></tr>
+          <tr><td><b>확장성</b></td><td>신규 기능마다 커스텀 개발</td><td>원클릭 플러그인</td></tr>
+          <tr><td><b>환자 관리</b></td><td>단계별 분절</td><td>End-to-End 단일 고객뷰</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 30: 도입 5단계 -->
+  <section class="slide">
+    <div class="s-badge">ADOPTION</div>
+    <div class="s-h2">EyeChartPro 도입 단계</div>
+    <div class="s-lead">안정적 전환을 위한 5단계 로드맵</div>
     <div class="s-grid-5">
-      <div class="s-phase">
-        <div class="s-phase-no">STEP 1</div>
-        <div class="s-phase-title">현황 분석</div>
-        <div class="s-phase-week">2주</div>
-        <ul><li>시스템 분석</li><li>차트 분석</li><li>요구사항 정의</li></ul>
+      <div class="s-phase"><div class="s-phase-no">STEP 1</div><div class="s-phase-title">현황 분석</div><div class="s-phase-week">2주</div><ul><li>기존 시스템 분석</li><li>차트 데이터 분석</li><li>요구사항 정의</li></ul></div>
+      <div class="s-phase"><div class="s-phase-no">STEP 2</div><div class="s-phase-title">데이터 이관</div><div class="s-phase-week">3주</div><ul><li>고객 마이그</li><li>예약·수술</li><li>코드 매핑</li></ul></div>
+      <div class="s-phase"><div class="s-phase-no">STEP 3</div><div class="s-phase-title">커스터마이징</div><div class="s-phase-week">4주</div><ul><li>검사 항목</li><li>상담 양식</li><li>리콜 정책</li></ul></div>
+      <div class="s-phase"><div class="s-phase-no">STEP 4</div><div class="s-phase-title">파일럿 운영</div><div class="s-phase-week">2주</div><ul><li>병행 운영</li><li>안정성 검증</li><li>개선 반영</li></ul></div>
+      <div class="s-phase"><div class="s-phase-no">STEP 5</div><div class="s-phase-title">전면 오픈</div><div class="s-phase-week">-</div><ul><li>전 직원 전환</li><li>교육 및 지원</li><li>정식 운영</li></ul></div>
+    </div>
+    <div class="s-closing">Before : 3개 시스템 이중 입력 · 통합 분석 불가 &nbsp;→&nbsp; After : 1개 시스템 · 실시간 통합 대시보드 · End-to-End 단일 고객뷰</div>
+  </section>
+
+  <!-- 31: Phase 로드맵 -->
+  <section class="slide">
+    <div class="s-badge">ROADMAP</div>
+    <div class="s-h2">도입 로드맵</div>
+    <div class="s-lead">Phase 1 — LOOCUS 솔루션 &nbsp;/&nbsp; Phase 2 — 차세대 CRM·EMR</div>
+    <div style="width:100%;max-width:var(--slide-w)">
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="pl-label">PHASE 1</div>
+          <div class="pl-date">2026 하반기</div>
+          <div class="pl-chip">LOOCUS 솔루션 도입</div>
+        </div>
+        <div class="phase-right">
+          <div class="pr-title">현재 전산 환경 유지 + AI 도입</div>
+          <div class="pr-sub">CRM/EMR 연동을 통한 비앤빛 수준의 AI 상담 프로세스 구축</div>
+          <div class="pr-chips">
+            <span class="pr-chip on">✓ 수술 기준 통합</span>
+            <span class="pr-chip on">✓ 시각화 상담</span>
+            <span class="pr-chip">기존 인프라 활용</span>
+          </div>
+        </div>
       </div>
-      <div class="s-phase">
-        <div class="s-phase-no">STEP 2</div>
-        <div class="s-phase-title">데이터 이관</div>
-        <div class="s-phase-week">3주</div>
-        <ul><li>고객 마이그</li><li>예약·수술</li><li>코드 매핑</li></ul>
-      </div>
-      <div class="s-phase">
-        <div class="s-phase-no">STEP 3</div>
-        <div class="s-phase-title">커스터마이징</div>
-        <div class="s-phase-week">4주</div>
-        <ul><li>검사 항목</li><li>상담 양식</li><li>리콜 정책</li></ul>
-      </div>
-      <div class="s-phase">
-        <div class="s-phase-no">STEP 4</div>
-        <div class="s-phase-title">파일럿 운영</div>
-        <div class="s-phase-week">2주</div>
-        <ul><li>병행 운영</li><li>안정성 검증</li><li>개선 반영</li></ul>
-      </div>
-      <div class="s-phase">
-        <div class="s-phase-no">STEP 5</div>
-        <div class="s-phase-title">전면 오픈</div>
-        <div class="s-phase-week">1주</div>
-        <ul><li>전 직원 전환</li><li>원내 상주 지원</li><li>정식 운영</li></ul>
+      <div class="phase-next">↓ &nbsp;<span>NEXT STEP</span></div>
+      <div class="phase-row">
+        <div class="phase-left">
+          <div class="pl-label">PHASE 2</div>
+          <div class="pl-date">2027</div>
+          <div class="pl-chip">AI 확장 및 디지털 전환</div>
+        </div>
+        <div class="phase-right">
+          <div class="pr-title">하나의 플랫폼, 병원의 모든 것 – 차세대 CRM/EMR</div>
+          <div class="phase-feats">
+            <div class="pf"><div class="pf-t">① 환자 여정 통합</div><div class="pf-s">마케팅 유입부터<br>사후관리까지 한눈에</div></div>
+            <div class="pf"><div class="pf-t">② 경영 컨트롤 타워</div><div class="pf-s">매출, ROI, 인사고과<br>실시간 대시보드</div></div>
+            <div class="pf"><div class="pf-t">③ 원클릭 확장</div><div class="pf-s">새 서비스 출시되면<br>버튼 하나로 연동</div></div>
+          </div>
+          <div class="pr-meta">[통합 연동 서비스]</div>
+          <div class="pr-tags">
+            <span class="pt primary">LOOCUS VISION/INSIGHT</span>
+            <span class="pt">경영 대시보드</span>
+            <span class="pt">AI 챗봇</span>
+            <span class="pt">모바일앱</span>
+            <span class="pt">LOOCUS MyOPIA</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 8: Impact -->
+  <!-- 32: Summary -->
   <section class="slide">
-    <div class="s-badge">IMPACT</div>
-    <div class="s-h2">도입 후 기대 효과</div>
-    <div class="s-lead">업무 효율 · 데이터 활용 · 확장성 · 환자 관리</div>
-    <table class="s-tbl">
-      <thead><tr><th>영역</th><th>Before</th><th>After</th></tr></thead>
-      <tbody>
-        <tr><td>업무 효율</td><td class="bef">3개 시스템 이중 입력</td><td class="aft">1개 시스템 단일 입력</td></tr>
-        <tr><td>데이터 활용</td><td class="bef">통합 분석 불가</td><td class="aft">실시간 통합 대시보드</td></tr>
-        <tr><td>확장성</td><td class="bef">신규 기능마다 커스텀 개발</td><td class="aft">표준 구조 기반 신속 확장</td></tr>
-        <tr><td>환자 관리</td><td class="bef">단계별 분절</td><td class="aft">End-to-End 단일 고객뷰</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- 9: Foundation -->
-  <section class="slide">
-    <div class="s-badge">FOUNDATION</div>
-    <div class="s-h2">탄탄한 기술적 기반</div>
-    <div class="s-lead">AX의 출발선에 바로 설 수 있는 엔지니어링 자산</div>
-    <div class="s-grid-3">
-      <div class="s-card green">
-        <h4>◉ 표준화된 아키텍처</h4>
-        <ul><li>Route / Service / Schema 3레이어</li><li>Service 31개 모듈 분리</li><li>개발 표준 문서화</li></ul>
-      </div>
-      <div class="s-card green">
-        <h4>⚡ 실측된 DB 성능</h4>
-        <ul><li>커버링 인덱스 p95 최대 -89%</li><li>k6 시나리오 정량 측정</li><li>smoke 테스트 5종</li></ul>
-      </div>
-      <div class="s-card green">
-        <h4>🔍 요청 단위 추적</h4>
-        <ul><li>구조화된 로깅</li><li>reqId 자동 컨텍스트</li><li>중앙 에러 처리</li></ul>
-      </div>
+    <div class="s-badge">SUMMARY</div>
+    <div class="s-h2">LOOCUS VISION / INSIGHT / 차세대 CRM</div>
+    <div class="s-lead">검증된 AI 솔루션과 프로세스 개편 사례를 통해 <b>질적 성장</b>을 함께 갑니다</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:var(--slide-w)">
+      <div class="sum-card" style="border-left-color:#4a9eff"><div class="sc-icon" style="background:#eff6ff;color:#2563eb">📋</div><div><div class="sc-tag" style="color:#2563eb">Proven Methodology</div><div class="sc-title">검증된 방법론</div><div class="sc-sub">비앤빛에서 검증된 상담 프로세스 개편 사례</div></div></div>
+      <div class="sum-card" style="border-left-color:#7c3aed"><div class="sc-icon" style="background:#f3e8ff;color:#7c3aed">🖥</div><div><div class="sc-tag" style="color:#7c3aed">Core Infrastructure</div><div class="sc-title">핵심 인프라</div><div class="sc-sub">VISION (추천) + INSIGHT (시각화)</div></div></div>
+      <div class="sum-card" style="border-left-color:#10b981"><div class="sc-icon" style="background:#ecfdf5;color:#059669">📈</div><div><div class="sc-tag" style="color:#059669">Dual Growth</div><div class="sc-title">전환율 + 프리미엄 비중 동반 상승</div><div class="sc-sub">객단가와 매출의 동반 상승</div></div></div>
+      <div class="sum-card" style="border-left-color:#f97316"><div class="sc-icon" style="background:#fff7ed;color:#ea580c">🏅</div><div><div class="sc-tag" style="color:#ea580c">Brand Value</div><div class="sc-title">브랜드 가치 제고</div><div class="sc-sub">"AI 기반 맞춤 상담" 차별화 포인트 분당 지역 최초 AI 도입 병원</div></div></div>
     </div>
   </section>
 
-  <!-- 10: AX -->
-  <section class="slide">
-    <div class="s-badge">AX — AI TRANSFORMATION</div>
-    <div class="s-h2">AI 전환 핵심 영역</div>
-    <div class="s-lead">자동화 · 예측 · 지능화</div>
-    <div class="s-grid-3">
-      <div class="s-card blue">
-        <h4>★ 리콜 예측</h4>
-        <ul><li>재내원 확률 모델링</li><li>우선순위 자동 정렬</li><li>재내원율 상승 기대</li></ul>
-      </div>
-      <div class="s-card blue">
-        <h4>◈ 소개 고객 매칭</h4>
-        <ul><li>임베딩 유사도 검색</li><li>높은 신뢰도에서 자동 매칭</li><li>오매칭 대폭 감소</li></ul>
-      </div>
-      <div class="s-card blue">
-        <h4>✎ 상담 어시스턴트</h4>
-        <ul><li>음성 → 구조화 메모</li><li>고객 이력 요약</li><li>상담 참고 정보 추천</li></ul>
-      </div>
-    </div>
-    <p style="font-size:12px;color:#8b92a0;margin-top:14px">※ 전면 오픈 이후 단계 착수 · 구체 수치는 파일럿에서 측정</p>
-  </section>
-
-  <!-- 11: Why us -->
-  <section class="slide">
-    <div class="s-badge">WHY VISUWORKS</div>
-    <div class="s-h2">왜 비쥬웍스와 함께해야 하는가</div>
-    <div class="s-lead">안과에 최적화된 경험 · 검증된 성과 · 단일 파트너십</div>
-    <div class="s-grid-4">
-      <div class="s-card blue">
-        <h4>🎯 안과 전문</h4>
-        <ul>
-          <li>10년간 안과 운영 데이터 축적</li>
-          <li>검사 → 상담 → 수술 → AS 전 과정 이해</li>
-          <li>라식 · 라섹 · 백내장 · 노안 각각의 전환 패턴 반영</li>
-        </ul>
-      </div>
-      <div class="s-card blue">
-        <h4>📊 실증된 숫자</h4>
-        <ul>
-          <li>수술 전환율 +12.1%p</li>
-          <li>프리미엄 수술 비중 +4.5%p</li>
-          <li>비앤빛안과 실사용 결과</li>
-        </ul>
-      </div>
-      <div class="s-card blue">
-        <h4>🛠 단일 파트너</h4>
-        <ul>
-          <li>CRM · EMR · CTI · 검사장비 통합</li>
-          <li>벤더 여러 곳 조율 불필요</li>
-          <li>SLA · 장애대응 단일 창구</li>
-        </ul>
-      </div>
-      <div class="s-card blue">
-        <h4>🤖 AI 전환 준비</h4>
-        <ul>
-          <li>AX(AI Transformation) 로드맵 보유</li>
-          <li>리콜 예측 · 상담 요약 · Agent 설계</li>
-          <li>전면 오픈 이후 단계 착수</li>
-        </ul>
-      </div>
-    </div>
-    <div class="s-closing">검증된 성과 + 안과 특화 + 단일 파트너 = 도입 리스크 최소화</div>
-  </section>
-
-  <!-- 12: Conclusion -->
-  <section class="slide">
-    <div class="s-badge">CONCLUSION</div>
-    <div class="s-title" style="font-size:50px;">지금이 전환의 적기입니다</div>
-    <div class="s-subtitle">탄탄한 기반 위에서 그리는 AI 전환의 출발선</div>
-    <div class="s-meta" style="max-width:700px; line-height:2;">
-      단기 — <b>관측성 · DB 성능 · 데이터 기반</b> 확보<br>
-      중기 — <b>리콜 예측 · 소개 매칭 · 상담 요약</b> 자동화<br>
-      장기 — <b>AI Agent 기반 자율 운영</b> 전환
-    </div>
-  </section>
-
-  <!-- 13: Call to action -->
-  <section class="slide">
-    <div class="s-badge">CALL TO ACTION</div>
-    <div class="s-title" style="font-size:56px;">AI 병원 운영 표준,<br>지금 시작하세요</div>
-    <div class="s-subtitle">개별 기능은 각각의 문제를 해결하지만, <b>통합은 병원의 운영 구조 자체</b>를 바꿉니다</div>
-    <div class="s-meta" style="margin-top:30px;">
-      <b>문의</b> : 비쥬웍스 &nbsp;|&nbsp; <b>제안일</b> : 2026-04-09
-    </div>
-  </section>
-
-  <!-- 14: Thank you -->
+  <!-- 33: Thank you -->
   <section class="slide">
     <div class="s-badge">THANK YOU</div>
-    <div class="s-title">감사합니다</div>
-    <div class="s-subtitle">함께 만들어갈 청주김안과의 차세대 플랫폼</div>
-    <div class="s-meta">
-      EyeChartPro · LOOCUS VISION · CTI · EMR<br>
-      <b>2026-04-09</b>
-    </div>
+    <div class="s-title">감사합니다.</div>
+    <div class="s-subtitle">비쥬웍스 · 2026. 4. 10</div>
+    <div class="s-meta">LOOCUS VISION / INSIGHT · 차세대 CRM &nbsp;|&nbsp; Strictly private and confidential</div>
   </section>
 
 </div>
 
 <div class="nav-bar">
   <button class="nav-btn icon-only" id="navPrev" title="이전 (←)">◀</button>
-  <div class="nav-counter" id="navCounter">1 / 14</div>
+  <div class="nav-counter" id="navCounter"><input id="navInput" type="number" min="1" value="1" style="width:36px;background:transparent;border:none;color:inherit;font:inherit;text-align:right;outline:none;-moz-appearance:textfield"> / <span id="navTotal">32</span></div>
   <button class="nav-btn icon-only" id="navNext" title="다음 (→)">▶</button>
   <button class="nav-btn" id="navFull" title="전체화면 (F)">⛶ Full</button>
   <a class="nav-btn" href="../index.html" title="홈">⌂ Home</a>
@@ -486,13 +1485,21 @@
   const slides = document.querySelectorAll('.slide');
   const total = slides.length;
   let idx = 0;
-  const counter = document.getElementById('navCounter');
+  const navInput = document.getElementById('navInput');
+  const navTotal = document.getElementById('navTotal');
+  navTotal.textContent = total;
+  navInput.max = total;
 
   function show(n) {
     idx = (n + total) % total;
     slides.forEach((s, i) => s.classList.toggle('active', i === idx));
-    counter.textContent = (idx + 1) + ' / ' + total;
+    navInput.value = idx + 1;
   }
+  navInput.addEventListener('change', () => {
+    const v = parseInt(navInput.value, 10);
+    if (!isNaN(v)) show(v - 1);
+  });
+  navInput.addEventListener('keydown', (e) => e.stopPropagation());
   document.getElementById('navPrev').onclick = () => show(idx - 1);
   document.getElementById('navNext').onclick = () => show(idx + 1);
   document.getElementById('navFull').onclick = () => {
