@@ -33,7 +33,7 @@
       items: [
         { id: 'index', icon: ICONS.dashboard, title: '대시보드', href: 'index.html' },
         { id: 'summary', icon: ICONS.summary, title: '요약 (Executive Summary)', href: 'pages/summary.html' },
-        { id: 'control-tower', icon: ICONS.tower, title: '경영진 통합 컨트롤 타워', href: 'pages/control-tower.html' },
+        { id: 'control-tower', icon: ICONS.tower, title: '운영 성과 대시보드', href: 'pages/control-tower.html' },
       ],
     },
     {

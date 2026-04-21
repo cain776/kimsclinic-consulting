@@ -1,0 +1,124 @@
+  <!-- 28: Dashboard -->
+  <section class="slide">
+    <style>
+      /* ===== slide-28 scoped ===== */
+      .s28-b { color:#e4e6eb; }
+      body[data-theme="light"] .s28-b { color:#111827; }
+
+      .s28-hdr { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:800; letter-spacing:1.2px; margin-bottom:12px; text-align:left; }
+      .s28-hdr .s28-dot { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; font-size:12px; }
+
+      .s28-hdr.kpi { color:#4a9eff; }
+      .s28-hdr.kpi .s28-dot { background:#1e3a5f; }
+      body[data-theme="light"] .s28-hdr.kpi { color:#2563eb; }
+      body[data-theme="light"] .s28-hdr.kpi .s28-dot { background:#dbeafe; color:#2563eb; }
+
+      .s28-hdr.special { color:#a855f7; }
+      .s28-hdr.special .s28-dot { background:#2d1a3a; }
+      body[data-theme="light"] .s28-hdr.special { color:#7c3aed; }
+      body[data-theme="light"] .s28-hdr.special .s28-dot { background:#ede9fe; color:#7c3aed; }
+
+      .s28-card-sub { font-size:11.5px; color:#8b92a0; line-height:1.55; }
+      body[data-theme="light"] .s28-card-sub { color:#4b5563; }
+
+      .s28-pill { font-size:11px; font-weight:800; letter-spacing:1.2px; padding:4px 10px; border-radius:999px; }
+      .s28-pill.owner { color:#f97316; background:#2d1a0a; }
+      body[data-theme="light"] .s28-pill.owner { color:#c2410c; background:#ffedd5; }
+      .s28-pill.legacy { color:#a855f7; background:#1e1a3a; }
+      body[data-theme="light"] .s28-pill.legacy { color:#7c3aed; background:#ede9fe; }
+      .s28-pill.iot { color:#06b6d4; background:#062a33; }
+      body[data-theme="light"] .s28-pill.iot { color:#0e7490; background:#cffafe; }
+
+      .s28-feat-sub { font-size:13px; color:#8b92a0; line-height:1.6; }
+      body[data-theme="light"] .s28-feat-sub { color:#374151; }
+      .s28-feat-sub .hi-owner { color:#fbbf24; font-weight:800; }
+      body[data-theme="light"] .s28-feat-sub .hi-owner { color:#b45309; }
+      .s28-feat-sub .hi-legacy { color:#c084fc; font-weight:800; }
+      body[data-theme="light"] .s28-feat-sub .hi-legacy { color:#7c3aed; }
+      .s28-feat-sub .hi-iot { color:#22d3ee; font-weight:800; }
+      body[data-theme="light"] .s28-feat-sub .hi-iot { color:#0e7490; }
+
+      .s28-close-num { color:#4a9eff; font-size:19px; font-weight:900; }
+      body[data-theme="light"] .s28-close-num { color:#2563eb; }
+      .s28-close-msg { color:#22c55e; }
+      body[data-theme="light"] .s28-close-msg { color:#15803d; }
+    </style>
+
+    <div class="s-badge">DASHBOARD</div>
+    <div class="s-h2">운영 성과 대시보드</div>
+    <div class="s-lead">병원 경영의 모든 숫자를 하나의 화면으로 — <b class="s28-b">7개 핵심 KPI</b>를 실시간으로 제공합니다</div>
+
+    <!-- 핵심 KPI 5개 -->
+    <div style="width:100%;max-width:var(--slide-w);margin-bottom:18px">
+      <div class="s28-hdr kpi">
+        <span class="s28-dot">◆</span>
+        경영 의사결정 핵심 지표 · 실시간 제공
+      </div>
+      <div class="s-grid-5" style="gap:12px">
+        <div class="s-card blue" style="padding:18px 14px;text-align:left">
+          <div style="font-size:22px;margin-bottom:10px">🤝</div>
+          <h4 style="font-size:13.5px;margin-bottom:6px;line-height:1.35">소개 환자 네트워크</h4>
+          <div class="s28-card-sub">누가, 얼마만큼 소개하는지<br>소개 성과 네트워크 맵</div>
+        </div>
+        <div class="s-card blue" style="padding:18px 14px;text-align:left">
+          <div style="font-size:22px;margin-bottom:10px">🧑‍⚕️</div>
+          <h4 style="font-size:13.5px;margin-bottom:6px;line-height:1.35">원장별 수술 성과</h4>
+          <div class="s28-card-sub">원장별 수술 건수 · 성과를<br>데이터로 투명하게</div>
+        </div>
+        <div class="s-card blue" style="padding:18px 14px;text-align:left">
+          <div style="font-size:22px;margin-bottom:10px">💬</div>
+          <h4 style="font-size:13.5px;margin-bottom:6px;line-height:1.35">상담사 매출 기여도</h4>
+          <div class="s28-card-sub">상담사별 기여 매출 ·<br>전환 성과를 수치로</div>
+        </div>
+        <div class="s-card blue" style="padding:18px 14px;text-align:left">
+          <div style="font-size:22px;margin-bottom:10px">🎯</div>
+          <h4 style="font-size:13.5px;margin-bottom:6px;line-height:1.35">수술 · 프리미엄 전환율</h4>
+          <div class="s28-card-sub">상담 → 수술 전환율과<br>프리미엄 비중 실시간 추적</div>
+        </div>
+        <div class="s-card blue" style="padding:18px 14px;text-align:left">
+          <div style="font-size:22px;margin-bottom:10px">🔀</div>
+          <h4 style="font-size:13.5px;margin-bottom:6px;line-height:1.35">환자 여정 퍼널</h4>
+          <div class="s28-card-sub">예약부터 사후관리까지<br>단계별 이탈 · 체류 가시화</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 병원 특화 차별화 2개 -->
+    <div style="width:100%;max-width:var(--slide-w);margin-bottom:16px">
+      <div class="s28-hdr special">
+        <span class="s28-dot">★</span>
+        안과 특화 차별화 영역 · 구현 중
+      </div>
+      <div class="s-grid-3" style="gap:14px">
+        <div class="s-card orange" style="padding:18px 20px;text-align:left">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="font-size:22px">🧭</span>
+            <span class="s28-pill owner">현장 노하우 기반</span>
+          </div>
+          <h4 style="font-size:15.5px;margin-bottom:8px">재고 · 렌즈 관리</h4>
+          <div class="s28-feat-sub">렌즈 재고 흐름과 소진 현황을 <b class="hi-owner">실시간 가시화</b> — 재고 낭비 차단과 최적 발주 타이밍을 데이터로 판단</div>
+        </div>
+        <div class="s-card purple" style="padding:18px 20px;text-align:left">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="font-size:22px">⭐</span>
+            <span class="s28-pill legacy">실시간 평판 추적</span>
+          </div>
+          <h4 style="font-size:15.5px;margin-bottom:8px">리뷰 · 평판 모니터링</h4>
+          <div class="s28-feat-sub">네이버 · 모두닥 등 주요 채널 리뷰를 <b class="hi-legacy">자동 수집 · 별점 · 키워드 분석</b> — 환자 만족도 변화를 한눈에 파악</div>
+        </div>
+        <div class="s-card" style="padding:18px 20px;text-align:left;border-top:4px solid #06b6d4">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="font-size:22px">📡</span>
+            <span class="s28-pill iot">RFID 태그 기반</span>
+          </div>
+          <h4 style="font-size:15.5px;margin-bottom:8px">환자 대기시간 측정</h4>
+          <div class="s28-feat-sub">검안사 업무 시작·종료를 <b class="hi-iot">RFID 태그로 자동 기록</b> — 단계별 대기시간과 병목 구간을 실시간 가시화</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 결론 배너 -->
+    <div class="s-closing" style="margin-top:6px">
+      <b class="s28-close-num">7개 핵심 KPI</b> · 하나의 대시보드 — <span class="s28-close-msg">경영 의사결정의 속도와 정밀도를 한 단계 끌어올립니다</span>
+    </div>
+  </section>
