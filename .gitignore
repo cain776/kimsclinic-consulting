@@ -30,3 +30,8 @@ npm-debug.log*
 .env
 .env.local
 .env.*.local
+
+# Work-in-progress workspaces (not part of deploy)
+loocus-phakic/
+청주김안과/page-refactor/
+청주김안과/feasibility-report-v2.md
